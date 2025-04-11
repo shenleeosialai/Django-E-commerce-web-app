@@ -1,6 +1,10 @@
 from django.db import models
 from shop.models import Product
 from django.conf import settings
+from decimal import Decimal
+from django.core.validators import MinValueValidator, \
+    MaxValueValidator
+from coupons.models import Coupon
 
 
 # Create your models here.
@@ -15,6 +19,13 @@ class Order(models.Model):
     updated = models.DateTimeField(auto_now=True)
     paid = models.BooleanField(default=False)
     stripe_id = models.CharField(max_length=250, blank=True)
+    coupon = models.ForeignKey(Coupon,
+                               related_name='order',
+                               null=True, blank=True,
+                               on_delete=models.SET_NULL)
+    discount = models.IntegerField(default=0,
+                                   validators=[MinValueValidator(0),
+                                               MaxValueValidator(100)])
 
     class Meta:
         ordering = ['-created']
@@ -56,3 +67,16 @@ class OrderItem(models.Model):
 
     def get_cost(self):
         return self.price * self.quantity
+
+    def get_total_cost_before_discount(self):
+        return sum(item.get_cost() for item in self.item.all())
+
+    def get_discount(self):
+        total_cost = self.get_total_cost_before_discount()
+        if self.discount:
+            return total_cost * (self.discount / (100))
+        return Decimal(0)
+
+    def get_total_cost(self):
+        total_cost = self.get_total_cost_before_discount()
+        return total_cost - self.get_discount()
