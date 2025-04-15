@@ -115,6 +115,13 @@ ul.errorlist {
    padding:10px 0;
 }
 
+
+#header {
+    padding:10px 100px;
+    font-size:18px;
+    overflow:auto;
+}
+
 #subheader {
     background:#ececec;
     color:#444;
@@ -122,21 +129,12 @@ ul.errorlist {
     overflow:auto;
 }
 
-#header {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start; /* Align items to the left */
-    padding: 20px;
-    background-color: #ffffff;
-}
-
 #header .logo {
-    margin-right: auto; /* Push the logo to the left */
-}
-
-#header .logo img {
-    max-height: 200px; /* Adjust as necessary for your layout */
-    width: auto; /* Maintain aspect ratio */
+    font-family: 'Ubuntu', sans-serif;
+    float:left;
+    color:#333;
+    font-size:22px;
+    margin-right:10%;
 }
 
 #subheader .cart {
@@ -149,42 +147,35 @@ ul.errorlist {
     overflow:hidden;
 }
 
-#navbar {
-    background-color: #f8f9fa;
-    padding: 15px 20px;
-    width: 100%;
-    display: flex;
-    align-items: center;
+#sidebar {
+    width:220px;
+    padding:30px 20px 0 0;
+    float:left;
 }
 
-#navbar ul {
-    margin: 0;
-    padding: 0;
-    display: flex;
+#sidebar ul{
+    margin:0;
+    padding:0;
 }
 
-#navbar ul li {
-    margin: 0;
-    list-style: none;
-    padding: 10px 14px;
+#sidebar ul li {
+    margin:0;
+    list-style:none;
+    padding:10px 14px;
 }
 
-#navbar ul li a {
-    display: block;
-    text-decoration: none;
-    color: #000;
+#sidebar ul li a {
+    display:block;
 }
 
-#navbar ul li.selected {
-    background: #5993bb;
-    border-radius: 4px;
+#sidebar ul li.selected {
+    background:#5993bb;
+    border-radius:4px;
 }
 
-#navbar ul li.selected a {
-    color: #fff;
-    font-weight: bold;
+#sidebar ul li.selected a {
+    color:#fff;
 }
-
 
 #main {
     float:left;
