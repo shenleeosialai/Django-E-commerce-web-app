@@ -6,6 +6,42 @@
 {% endblock %}
 
 {% block content %}
+<div id="heroCarousel" class="carousel slide position-relative" data-bs-ride="carousel" data-bs-interval="2000" data-bs-pause="hover">
+  <div class="carousel-inner">
+
+    <!-- Slide 1 -->
+    <div class="carousel-item active">
+      <div class="hero-slide d-flex align-items-center justify-content-center text-white" style="background-image: url('https://images.unsplash.com/photo-1489367874814-f5d040621dd8?q=80&w=2046&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+        <div class="text-center">
+          <h1 class="display-4 fw-bold">Slide One Title</h1>
+          <p class="lead">Subtitle or caption for slide one.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="carousel-item">
+      <div class="hero-slide d-flex align-items-center justify-content-center text-white" style="background-image: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+        <div class="text-center">
+          <h1 class="display-4 fw-bold">Slide Two Title</h1>
+          <p class="lead">Subtitle or caption for slide two.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="carousel-item">
+      <div class="hero-slide d-flex align-items-center justify-content-center text-white" style="background-image: url('https://images.unsplash.com/photo-1573164574572-cb89e39749b4?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+        <div class="text-center">
+          <h1 class="display-4 fw-bold">Slide Three Title</h1>
+          <p class="lead">Subtitle or caption for slide three.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Sidebar and Main Content -->
   <div id="sidebar">
     <h3>Categories</h3>
     <ul>
@@ -19,6 +55,7 @@
       {% endfor %}
     </ul>
   </div>
+
   <div id="main" class="product-list">
     <h1>{% if category %}{{ category.name }}{% else %}Products{% endif %}</h1>
     {% for product in products %}
@@ -32,4 +69,56 @@
       </div>
     {% endfor %}
   </div>
+
+  
+    <h2 class="text-white fw-bold mb-2">Trending Collection</h2>
+    <p class="text-secondary text-white fs-2">Checkout Our Weekly Updated Trending Collection.</p>
+  
+    <!-- Scrollable Horizontal Cards -->
+    <div class="scroll-container d-flex overflow-auto gap-4">
+  
+      <!-- DSGN Animals -->
+      <div class="custom-card text-white">
+        <img src="https://images.unsplash.com/photo-1531913764164-f85c52e6e654?q=80&w=1934&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="DSGN Animals">
+        <div class="d-flex justify-content-between align-items-center mt-3">
+          <img src="https://images.unsplash.com/photo-1628521153640-bce8558a271c?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="thumb-img rounded-3">
+          <img src="https://images.unsplash.com/photo-1534438544778-dd9a3a3d1147?q=80&w=2127&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="thumb-img rounded-3">
+          <div class="bg-purple text-white px-3 py-2 rounded-3 fw-bold">view</div>
+        </div>
+        <div class="mt-3">
+          <h5 class="fw-bold mb-1">Art</h5>
+          <small class="text-white">Modern Art</small>
+        </div>
+      </div>
+  
+      <!-- Magic Mushrooms -->
+      <div class="custom-card text-white">
+        <img src="https://images.unsplash.com/photo-1595231861877-9519be503a52?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="Magic Mushrooms">
+        <div class="d-flex justify-content-between align-items-center mt-3">
+          <img src="https://images.unsplash.com/photo-1641893588018-b958a5845cab?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="thumb-img rounded-3">
+          <img src="https://images.unsplash.com/photo-1663669066662-1c696543b852?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D" class="thumb-img rounded-3">
+          <div class="bg-purple text-white px-3 py-2 rounded-3 fw-bold">view</div>
+        </div>
+        <div class="mt-3">
+          <h5 class="fw-bold mb-1">Mentor</h5>
+          <small class="text-white">Mr.einstein</small>
+        </div>
+      </div>
+  
+      <!-- Disco Machines -->
+      <div class="custom-card text-white">
+        <img src="https://images.unsplash.com/photo-1744571180405-13d4fd7ee15b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bW9kZXJuJTIwYXJ0JTIwc3Vuc2V0JTIwcGFpbnRpbmd8ZW58MHwwfDB8fHwy" class="card-img-top" alt="Disco Machines">
+        <div class="d-flex justify-content-between align-items-center mt-3">
+          <img src="https://images.unsplash.com/photo-1635890396699-7ddd0429a4ec?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG1vZGVybiUyMGFydCUyMHN1bnNldCUyMHBhaW50aW5nfGVufDB8MHwwfHx8Mg%3D%3D" class="thumb-img rounded-3">
+          <img src="https://images.unsplash.com/photo-1659608982321-8374e0baf97b?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="thumb-img rounded-3">
+          <div class="bg-purple text-white px-3 py-2 rounded-3 fw-bold">view</div>
+        </div>
+        <div class="mt-3">
+          <h5 class="fw-bold mb-1">Scenery</h5>
+          <small class="text-white">sunsets</small>
+        </div>
+      </div>
+  
+    </div>
+ 
 {% endblock %}

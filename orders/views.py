@@ -34,6 +34,7 @@ def order_create(request):
             request.session['order_id'] = order.id
             # redirect for payment
             return redirect(reverse('payment:process'))
+
     else:
         form = OrderCreateForm()
     return render(request, 'orders/order/create.html',
@@ -43,7 +44,7 @@ def order_create(request):
 @staff_member_required
 def admin_order_detail(request, order_id):
     order = get_object_or_404(OrderItem, order_id=order_id)
-    return render(request, 'orders/order/detail.html', {'order': order})
+    return render(request, 'orders/order/created.html', {'order': order})
 
 
 @staff_member_required
