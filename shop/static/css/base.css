@@ -132,6 +132,27 @@ ul.errorlist {
     overflow:auto;
 }
 
+.cart i {
+    color: #a259ff;
+    text-shadow: 0 0 5px rgba(255, 77, 79, 0.6);
+  }
+  
+@keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.15);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  .cart i.animate {
+    animation: pulse 1.5s infinite;
+  }
+  
 #header .logo {
     font-family: "Luckiest Guy", sans-serif;
     float:left;
@@ -144,6 +165,7 @@ ul.errorlist {
 #subheader .cart {
     float:right;
     padding-top:4px;
+    font-size: large;
 }
 
 #content {
@@ -151,54 +173,123 @@ ul.errorlist {
     overflow:hidden;
 }
 
-#sidebar {
-    width:220px;
-    padding:30px 20px 0 0;
-    float:left;
+/* General Layout Reset */
+.categories-section,
+.products-section {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-#sidebar ul{
-    margin:0;
-    padding:0;
+/* Category Cards */
+.categories-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: flex-start;
 }
 
-#sidebar ul li {
-    margin:0;
-    list-style:none;
-    padding:10px 14px;
+.category-card {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    border-radius: 16px;
+    width: 200px;
+    height: 240px;
+    overflow: hidden;
+    text-align: center;
+    transition: 0.3s;
+  }
+  .category-overlay {
+    background: rgba(0, 0, 0, 0.5); /* semi-transparent dark overlay */
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+  }
+  .category-card a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: relative;
+  }
+
+.category-card:hover {
+    transform: translateY(-5px);
+  }
+
+.category-name {
+    font-weight: bold;
+    font-size: 14px;
+    margin-top: 4px;
+    color: #ffffff;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-family: "Luckiest Guy", sans-serif; font-weight:bold;
 }
 
-#sidebar ul li a {
-    display:block;
+/* Bottom label */
+.category-label {
+    position: absolute;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7); /* You can change to any solid color */
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+  }
+
+.category-card.selected a {
+  color: white;
 }
 
-#sidebar ul li.selected {
-    background:#007bff;
-    border-radius:4px;
+/* Product Cards */
+.product-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: start;
+  margin-top: 20px;
 }
 
-#sidebar ul li.selected a {
-    color:#fff;
+.product-card {
+  background: #1e1e1e;
+  border-radius: 16px;
+  padding: 25px;
+  width: 200px;
+  text-align: center;
+  transition: 0.3s;
 }
 
-#main {
-    float:left;
-    width: 97%;
-    margin-right:-220px;
-    overflow:hidden;
+.product-card img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 10px;
 }
 
-.product-list .item {
-    width:29%;
-    padding:10px 20px 10px 0;
-    float:left;
-    text-align:center;
-    line-height:1.2;
+.product-card h3 {
+  margin: 15px 0 10px;
+  font-size: 26px;
+  color: white;
 }
 
-.product-list .item img {
-    width:100%;
-    margin-bottom:8px;
+.product-card p {
+  color: #ccc;
+  font-size: 24px;
+}
+
+.product-card a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.product-card:hover {
+  background-color: #2a2a2a;
 }
 
 .product-detail {
@@ -213,6 +304,7 @@ ul.errorlist {
 
 .product-detail img {
     width:40%;
+    border-radius: 16px;
     float:left;
     padding:0 20px 20px 0;
 }
@@ -343,32 +435,34 @@ form div.field {
   .bg-purple {
     background-color: #a259ff;
   }
-  .hero-slide {
-    height: 40vh;
-    background-size: cover;
-    background-position: center;
-    position: relative;
-  }
-  
-  .carousel-inner {
-    height: 100%;
+
+  .carousel {
+    width: 100vw;
+    margin-bottom: 4rem;
   }
   
   .carousel-item {
-    height: 100%;
+    position: relative;
+    height: auto;
   }
   
-  .custom-shape-divider-bottom {
-    position: absolute;
-    bottom: 0;
-    left: 0;
+  .carousel-item img {
     width: 100%;
-    line-height: 0;
-    z-index: 2;
+    height: 32rem;
+    object-fit: cover;
   }
   
-  .custom-shape-divider-bottom svg {
-    display: block;
-    width: 100%;
-    height: 100px;
+  .caption-below {
+    color: #fff;
+    padding: 3rem 2rem;
+    font-family: "Luckiest Guy", sans-serif;
+    font-size: larger;
   }
+  h8 {
+    font-family: "Luckiest Guy", sans-serif; font-weight:bold;
+}
+  p1{
+    font-family: "Luckiest Guy", sans-serif; font-weight:normal;
+}
+
+  

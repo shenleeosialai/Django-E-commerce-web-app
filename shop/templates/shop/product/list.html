@@ -6,69 +6,90 @@
 {% endblock %}
 
 {% block content %}
-<div id="heroCarousel" class="carousel slide position-relative" data-bs-ride="carousel" data-bs-interval="2000" data-bs-pause="hover">
-  <div class="carousel-inner">
+<div id="myCarousel" class="carousel slide mb-6 w-100" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
 
+  <div class="carousel-inner">
     <!-- Slide 1 -->
     <div class="carousel-item active">
-      <div class="hero-slide d-flex align-items-center justify-content-center text-white" style="background-image: url('https://images.unsplash.com/photo-1489367874814-f5d040621dd8?q=80&w=2046&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
-        <div class="text-center">
-          <h1 class="display-4 fw-bold">Slide One Title</h1>
-          <p class="lead">Subtitle or caption for slide one.</p>
-        </div>
+      <img src="https://images.unsplash.com/photo-1601645191163-3fc0d5d64e35?w=600&auto=format&fit=crop&q=60" alt="...">
+      <div class="caption-below text-start">
+        <h8>Explore our shelves</h8><br>
+        <p1 class="opacity-75">We offer the best comics from Marvel for free.</p1><br>
+        <p1><a class="btn btn-lg btn-primary" href="#">Shop now</a></p1>
       </div>
     </div>
 
     <!-- Slide 2 -->
     <div class="carousel-item">
-      <div class="hero-slide d-flex align-items-center justify-content-center text-white" style="background-image: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
-        <div class="text-center">
-          <h1 class="display-4 fw-bold">Slide Two Title</h1>
-          <p class="lead">Subtitle or caption for slide two.</p>
-        </div>
+      <img src="https://images.unsplash.com/photo-1634828221818-503587f33d02?q=80&w=1965&auto=format&fit=crop" class="d-block w-100" alt="...">
+      <div class="caption-below text-center">
+        <h8>Everything you need.</h8><br>
+        <p1 class="opacity-75">From Marvel to DC we gatchu.</p1><br>
+        <p1><a class="btn btn-lg btn-primary" href="#">Let's Go</a></p1>
       </div>
     </div>
 
     <!-- Slide 3 -->
     <div class="carousel-item">
-      <div class="hero-slide d-flex align-items-center justify-content-center text-white" style="background-image: url('https://images.unsplash.com/photo-1573164574572-cb89e39749b4?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
-        <div class="text-center">
-          <h1 class="display-4 fw-bold">Slide Three Title</h1>
-          <p class="lead">Subtitle or caption for slide three.</p>
-        </div>
+      <img src="https://images.unsplash.com/photo-1628426912206-d88e22da5c76?q=80&w=2070&auto=format&fit=crop" class="d-block w-100" class="d-block w-100" alt="...">
+      <div class="caption-below text-end">
+        <h8>One more to your collection won’t hurt.</h8><br>
+        <p1 class="opacity-75">Shop with us now.</p1><br>
+        <p1><a class="btn btn-lg btn-primary" href="#">Click here</a></p1>
       </div>
     </div>
-
   </div>
 
-  <!-- Sidebar and Main Content -->
-  <div id="sidebar">
-    <h3>Categories</h3>
-    <ul>
-      <li {% if not category %}class="selected"{% endif %}>
-        <a href="{% url "shop:product_list" %}">All</a>
-      </li>
-      {% for c in categories %}
-        <li {% if category.slug == c.slug %}class="selected"{% endif %}>
-          <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
-        </li>
-      {% endfor %}
-    </ul>
-  </div>
+  <!-- Controls -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
 
-  <div id="main" class="product-list">
-    <h1>{% if category %}{{ category.name }}{% else %}Products{% endif %}</h1>
-    {% for product in products %}
-      <div class="item">
-        <a href="{{ product.get_absolute_url }}">
-          <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
-        </a>
-        <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
-        <br>
-        ${{ product.price }}
-      </div>
+
+<div class="categories-section">
+  <h8>Browse Categories</h8>
+  <div class="categories-grid">
+    <div class="category-card {% if not category %}selected{% endif %}" style="background-image: url('https://images.unsplash.com/photo-1646065539148-6fafbf306c0e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEwfHx8ZW58MHx8fHx8');">
+      <a href="{% url "shop:product_list" %}">
+        <div class="category-name">All</div>
+      </a>
+    </div>
+    {% for c in categories %}
+    <div class="category-card position-relative {% if category.slug == c.slug %}selected{% endif %}" style="background-image: url('https://images.unsplash.com/photo-1646065539148-6fafbf306c0e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEwfHx8ZW58MHx8fHx8');">
+      <a href="{{ c.get_absolute_url }}">
+        <div class="category-name">{{ c.name }}</div> 
+      </a>
+    </div>
     {% endfor %}
   </div>
+</div>
+
+<div class="products-section">
+  <h2>{% if category %}{{ category.name }}{% else %}Products{% endif %}</h2>
+  <div class="product-grid">
+    {% for product in products %}
+    <div class="product-card">
+      <a href="{{ product.get_absolute_url }}">
+        <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}" alt="{{ product.name }}">
+        <h3>{{ product.name }}</h3>
+      </a>
+      <p>${{ product.price }}</p>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
 
   
     <h2 class="text-white fw-bold mb-2">Trending Collection</h2>
