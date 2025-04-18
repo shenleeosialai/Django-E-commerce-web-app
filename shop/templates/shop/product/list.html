@@ -58,19 +58,31 @@
 
 
 <div class="categories-section">
-  <h8>Browse Categories</h8>
+  <p1>Browse Categories</p1>
   <div class="categories-grid">
-    <div class="category-card {% if not category %}selected{% endif %}" style="background-image: url('https://images.unsplash.com/photo-1646065539148-6fafbf306c0e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEwfHx8ZW58MHx8fHx8');">
+    <div class="category-item">
+      <div class="category-card {% if not category %}selected{% endif %}" style="background-image: url('https://images.unsplash.com/photo-1646065539148-6fafbf306c0e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEwfHx8ZW58MHx8fHx8');">
+        <a href="{% url "shop:product_list" %}"></a>
+      </div>
       <a href="{% url "shop:product_list" %}">
-        <div class="category-name">All</div>
+        <div class="category-name">All~></div>
       </a>
     </div>
+    
     {% for c in categories %}
-    <div class="category-card position-relative {% if category.slug == c.slug %}selected{% endif %}" style="background-image: url('https://images.unsplash.com/photo-1646065539148-6fafbf306c0e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEwfHx8ZW58MHx8fHx8');">
-      <a href="{{ c.get_absolute_url }}">
-        <div class="category-name">{{ c.name }}</div> 
-      </a>
+    <div class="category-item">
+      {% if c.image %}
+        <div class="category-card" style="background-image: url('{{ c.image.url }}');">
+      {% else %}
+        <div class="category-card" style="background-image: url('https://images.unsplash.com/photo-1496843916299-590492c751f4?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+      {% endif %}
+          <a href="{{ c.get_absolute_url }}"></a>
+        </div>
+        <a href="{{ c.get_absolute_url }}">
+          <div class="category-name">{{ c.name }}~></div>
+        </a>
     </div>
+    
     {% endfor %}
   </div>
 </div>
@@ -141,5 +153,19 @@
       </div>
   
     </div>
- 
+    <footer style="text-align: center; padding: 20px; background-color: #000000; border-top: 1px solid #ddd;">
+      <p1 style="color: #ffffff;">&copy; OSHEN COMICS 2025</p1><br>
+      <p1>
+        <a href="https://www.instagram.com/_.shenlee?igsh=a3B0cnh1d2pqenp2&utm_source=qr" target="_blank" style="margin: 0 10px; text-decoration: none; color: #ffffff;">
+          <i class="fab fa-instagram" style="font-size: 24px;"></i> Instagram
+        </a>
+        <a href="https://www.linkedin.com/in/shen-lee-osialai-089403251" target="_blank" style="margin: 0 10px; text-decoration: none; color: #ffffff;">
+          <i class="fab fa-linkedin" style="font-size: 24px;"></i> LinkedIn
+        </a>
+        <a href="https://github.com/shenleeosialai" target="_blank" style="margin: 0 10px; text-decoration: none; color: #ffffff;">
+          <i class="fab fa-github" style="font-size: 24px;"></i> GitHub
+        </a>
+      </p1>
+    </footer>
+    
 {% endblock %}

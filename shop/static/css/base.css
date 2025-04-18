@@ -173,124 +173,172 @@ ul.errorlist {
     overflow:hidden;
 }
 
-/* General Layout Reset */
-.categories-section,
-.products-section {
-  width: 100%;
-  padding: 20px;
-  box-sizing: border-box;
-}
-
-/* Category Cards */
-.categories-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  justify-content: flex-start;
-}
-
-.category-card {
-    position: relative;
-    background-size: cover;
-    background-position: center;
-    border-radius: 16px;
-    width: 200px;
-    height: 240px;
-    overflow: hidden;
+.categories-section {
     text-align: center;
-    transition: 0.3s;
+    padding: 2rem;
   }
-  .category-overlay {
-    background: rgba(0, 0, 0, 0.5); /* semi-transparent dark overlay */
-    height: 100%;
-    width: 100%;
+  
+  .categories-section h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+  }
+  
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+  
+  .category-item {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    color: white;
-  }
-  .category-card a {
-    text-decoration: none;
-    color: white;
-    display: block;
-    height: 100%;
-    width: 100%;
-    position: relative;
-  }
-
-.category-card:hover {
-    transform: translateY(-5px);
-  }
-
-.category-name {
-    font-weight: bold;
-    font-size: 14px;
-    margin-top: 4px;
-    color: #ffffff;
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    font-family: "Luckiest Guy", sans-serif; font-weight:bold;
-}
-
-/* Bottom label */
-.category-label {
-    position: absolute;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.7); /* You can change to any solid color */
-    width: 100%;
-    padding: 10px;
     text-align: center;
   }
+  
+  .category-card {
+    width: 100%;
+    padding-top: 100%;
+    background-size: cover;
+    background-position: center;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+  }
+  
+  .category-card:hover {
+    transform: scale(1.03);
+  }
+  
+  .category-name {
+    margin-top: 0.75rem;
+    font-weight: 500;
+    font-size: 1rem;
+    color: #ffffff;
+    text-decoration: none;
+    font-family: "Luckiest Guy", sans-serif;
+  }
+  
+  .category-name-button {
+    background-color: #5e4caf; /* Green background */
+    color: white; /* White text */
+    padding: 10px 20px; /* Some padding */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 16px; /* Font size */
+    text-align: center; /* Centered text */
+  }
+  
+  .category-name-button:hover {
+    background-color: #45a049; /* Darker green on hover */
+  }
+  
 
-.category-card.selected a {
-  color: white;
-}
-
-/* Product Cards */
+/* Centering the heading */
+.products-section h2 {
+    text-align: center; /* Centers the text horizontally */
+    margin-bottom: 20px; /* Optional: Adds some space below the heading */
+    font-size: 32px; /* Adjust font size if needed */
+    color: white; /* Ensures the text color matches the theme */
+    font-family:"Luckiest Guy", sans-serif;
+  }
+  
+  /* Product Cards */
 .product-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  justify-content: start;
-  margin-top: 20px;
-}
-
-.product-card {
-  background: #1e1e1e;
-  border-radius: 16px;
-  padding: 25px;
-  width: 200px;
-  text-align: center;
-  transition: 0.3s;
-}
-
-.product-card img {
-  width: 100%;
-  border-radius: 8px;
-  margin-bottom: 10px;
-}
-
-.product-card h3 {
-  margin: 15px 0 10px;
-  font-size: 26px;
-  color: white;
-}
-
-.product-card p {
-  color: #ccc;
-  font-size: 24px;
-}
-
-.product-card a {
-  text-decoration: none;
-  color: inherit;
-}
-
-.product-card:hover {
-  background-color: #2a2a2a;
-}
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center; /* Centers the products horizontally */
+    margin-top: 20px;
+    margin-bottom: 26px;
+    padding: 0 10px; /* Optional: Adds some padding around the grid */
+  }
+  
+  .product-card {
+    background: #1e1e1e;
+    border-radius: 16px;
+    padding: 25px;
+    width: 240px;
+    text-align: center;
+    transition: 0.3s;
+    box-sizing: border-box;
+  }
+  
+  .product-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+  }
+  
+  .product-card h3 {
+    margin: 15px 0 10px;
+    font-size: 26px;
+    color: white;
+  }
+  
+  .product-card p {
+    color: #ccc;
+    font-size: 24px;
+  }
+  
+  .product-card a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .product-card:hover {
+    background-color: #2a2a2a;
+  }
+  
+  /* Media Queries for Responsiveness */
+  
+  /* Medium Screens (Tablets and below) */
+  @media (max-width: 768px) {
+    .product-grid {
+      justify-content: center; /* Keep the products centered */
+    }
+  
+    .product-card {
+      width: 200px; /* Adjust card width for medium screens */
+    }
+  
+    .product-card h3 {
+      font-size: 22px; /* Adjust font size */
+    }
+  
+    .product-card p {
+      font-size: 20px; /* Adjust price font size */
+    }
+  }
+  
+  /* Small Screens (Phones and below) */
+  @media (max-width: 480px) {
+    .product-card {
+      width: calc(33.33% - 20px); /* Ensure 3 items per row with gaps accounted */
+      padding: 15px; /* Reduce padding for smaller screens */
+    }
+  
+    /* Ensure the grid can display at least 3 items per row */
+    .product-grid {
+      gap: 10px; /* Reduce gap between items */
+      justify-content: space-between; /* Spread out cards so 3 fit properly */
+    }
+  
+    .product-card h3 {
+      font-size: 18px; /* Adjust title font size */
+    }
+  
+    .product-card p {
+      font-size: 16px; /* Adjust price font size */
+    }
+  }
+  
+    
 
 .product-detail {
     text-align:justify;
@@ -463,6 +511,7 @@ form div.field {
 }
   p1{
     font-family: "Luckiest Guy", sans-serif; font-weight:normal;
+    font-size: 32px;
 }
 
   
