@@ -7,15 +7,32 @@ from .recommender import Recommender
 def product_list(request, category_slug=None):
     category = None
     categories = Category.objects.all()
-    products = Product.objects.filter(available=True)
+
     if category_slug:
         category = get_object_or_404(Category, slug=category_slug)
-        products = products.filter(category=category)
-    return render(request,
-                  'shop/product/list.html',
-                  {'category': category,
-                   'categories': categories,
-                   'products': products})
+        products = Product.objects.filter(category=category, available=True)
+        return render(request, 'shop/product/list.html', {
+            'category': category,
+            'categories': categories,
+            'products': products,
+        })
+
+    # Get all featured categories from the database
+    featured_sections = []
+    featured_categories = Category.objects.filter(featured=True)
+
+    for c in featured_categories:
+        featured_products = Product.objects.filter(category=c, available=True)[:6]
+        featured_sections.append({
+            'category': c,
+            'products': featured_products
+        })
+
+    return render(request, 'shop/product/list.html', {
+        'category': None,
+        'categories': categories,
+        'featured_sections': featured_sections,
+    })
 
 
 def product_detail(request, id, slug):

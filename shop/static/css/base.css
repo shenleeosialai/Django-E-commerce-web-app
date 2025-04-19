@@ -4,13 +4,13 @@
 body {
     margin:0;
     padding:0;
-    font-family: "Cormorant Garamond", serif;
+    font-family: "Luckiest Guy", serif;
     background-color: #000000;
     color:#ffffff;
 }
 
 h1, h2, h3, h4, h5 , h6 {
-    font-family: 'Cormorant Garamond', sans-serif; font-weight:normal;
+    font-family: 'Luckiest Guy', sans-serif; font-weight:normal;
 }
 
 a {
@@ -262,7 +262,7 @@ ul.errorlist {
     background: #1e1e1e;
     border-radius: 16px;
     padding: 25px;
-    width: 240px;
+    width: 230px;
     text-align: center;
     transition: 0.3s;
     box-sizing: border-box;
@@ -277,7 +277,7 @@ ul.errorlist {
   
   .product-card h3 {
     margin: 15px 0 10px;
-    font-size: 26px;
+    font-size: 18px;
     color: white;
   }
   
@@ -294,6 +294,22 @@ ul.errorlist {
   .product-card:hover {
     background-color: #2a2a2a;
   }
+  .see-all-link {
+    margin-top: 1rem;
+    text-align: right;
+  }
+  
+  .see-all-link a {
+    color: #007BFF;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s ease;
+  }
+  
+  .see-all-link a:hover {
+    color: #0056b3;
+  }
+  
   
   /* Media Queries for Responsiveness */
   
@@ -337,8 +353,6 @@ ul.errorlist {
       font-size: 16px; /* Adjust price font size */
     }
   }
-  
-    
 
 .product-detail {
     text-align:justify;
@@ -401,12 +415,6 @@ ul.errorlist {
     color:#dc1616;
 }
 
-.languages {
-   float:right;
-   padding-top:4px;
-   font-size:14px;
-}
-
 .recommendations {
     clear:both;
 }
@@ -441,7 +449,6 @@ ul.errorlist {
     width:120px;
 }
 
-/* braintree hosted fields */
 form div.field {
     font-size:13px;
     color:#666;
@@ -513,5 +520,186 @@ form div.field {
     font-family: "Luckiest Guy", sans-serif; font-weight:normal;
     font-size: 32px;
 }
+.banner-section {
+  background-image: url('https://images.unsplash.com/flagged/photo-1587096472434-8b65b343980d?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 500px;
+}
 
-  
+.user-avatar {
+  width: 40px;
+  height: 40px;
+  background-color: #ca0707;
+  border-radius: 50%;
+}
+
+.timer-box {
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  min-width: 220px;
+}
+
+/* Section glass background */
+.how-it-works-section {
+  position: relative;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+/* Cards */
+.step-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease, border 0.3s ease;
+  z-index: 1;
+  position: relative;
+}
+
+/* Glowing border */
+.step-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 0 20px rgba(124, 58, 237, 0.6);
+  border-color: rgba(124, 58, 237, 0.9);
+}
+
+/* Blur & fade others */
+.row:hover .step-card {
+  filter: blur(2px);
+  opacity: 0.6;
+}
+
+.row:hover .step-card:hover {
+  filter: blur(0);
+  opacity: 1;
+  z-index: 2;
+}
+
+/* Icon container with float + glow */
+.step-icon {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  padding: 15px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+  animation: floatIcon 3s ease-in-out infinite;
+  position: relative;
+  transition: box-shadow 0.3s ease;
+}
+
+/* Float animation */
+@keyframes floatIcon {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* Glow on hover */
+.step-icon:hover {
+  box-shadow: 0 0 15px rgba(124, 58, 237, 0.6), 0 0 30px rgba(124, 58, 237, 0.4);
+}
+
+.scroll-container {
+  padding: 2rem;
+}
+
+.custom-card {
+  min-width: 300px;
+  background-color: #1a1a1a;
+  padding: 1rem;
+  border-radius: 20px;
+}
+
+.thumb-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.card-img-top {
+  border-radius: 15px;
+  cursor: pointer;
+  height: 200px;
+  object-fit: cover;
+  width: 100%;
+}
+
+/* Popup */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 2rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.popup-overlay.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.popup-overlay img,
+.popup-content {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+  background-color: #fff;
+  padding: 1rem;
+  color: #000;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+  animation: fadeIn 0.4s ease;
+}
+
+.popup-overlay .close-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 2rem;
+  color: #fff;
+  cursor: pointer;
+  font-weight: bold;
+  z-index: 10000;
+}
+
+@keyframes fadeIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+iframe {
+  width: 100%;
+  height: 300px;
+  border: none;
+  border-radius: 10px;
+}
+
+.popup-gallery {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.popup-gallery img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
+}

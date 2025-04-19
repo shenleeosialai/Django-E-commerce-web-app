@@ -8,6 +8,7 @@ class Category(models.Model):
     slug = models.CharField(max_length=200,
                             unique=True)
     image = models.ImageField(upload_to='categories/', blank=True, null=True)
+    featured = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['name']
@@ -37,7 +38,6 @@ class Product(models.Model):
     available = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    is_featured = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['name']

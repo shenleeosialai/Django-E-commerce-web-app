@@ -20,7 +20,6 @@
       <div class="caption-below text-start">
         <h8>Explore our shelves</h8><br>
         <p1 class="opacity-75">We offer the best comics from Marvel for free.</p1><br>
-        <p1><a class="btn btn-lg btn-primary" href="#">Shop now</a></p1>
       </div>
     </div>
 
@@ -30,7 +29,6 @@
       <div class="caption-below text-center">
         <h8>Everything you need.</h8><br>
         <p1 class="opacity-75">From Marvel to DC we gatchu.</p1><br>
-        <p1><a class="btn btn-lg btn-primary" href="#">Let's Go</a></p1>
       </div>
     </div>
 
@@ -40,7 +38,7 @@
       <div class="caption-below text-end">
         <h8>One more to your collection won’t hurt.</h8><br>
         <p1 class="opacity-75">Shop with us now.</p1><br>
-        <p1><a class="btn btn-lg btn-primary" href="#">Click here</a></p1>
+       <!--<p1><a class="btn btn-lg btn-primary" href="#">Click here</a></p1>-->
       </div>
     </div>
   </div>
@@ -56,116 +54,327 @@
   </button>
 </div>
 
+<!-- Header Section with Background Image -->
+<div class="banner-section text-white d-flex align-items-center">
+  <div class="container py-5">
+    <div class="row align-items-center">
+      <div class="col-md-6 text-center text-md-start">
+        <div class="d-flex align-items-center mb-3 justify-content-center justify-content-md-start">
+          <div class="user-avatar me-2"></div>
+          <span> oshen flash sale⚡</span>
+        </div>
+        <h1 class="display-4 fw-bold">shop while products are 30% off</h1>
+        <small class="text-uppercase text-red d-block mb-2">use code "oshen" as coupon</small>
+        <a href="{{ product.get_absolute_url }}" class="btn btn-light mt-3 px-4 py-2">shop now~></a>
+      </div>
+      <div class="col-md-6 text-center text-md-end mt-4 mt-md-0">
+        <div class="timer-box p-3 rounded">
+          <small class="text-uppercase text-red d-block mb-2">Flash ends in:</small>
+          <div class="d-flex justify-content-center gap-4" id="countdown">
+            <div><h3 class="mb-0" id="days">00</h3><small class="text-red">Days</small></div>
+            <div><h3 class="mb-0" id="hours">00</h3><small class="text-red">Hours</small></div>
+            <div><h3 class="mb-0" id="minutes">00</h3><small class="text-red">Minutes</small></div>
+            <div><h3 class="mb-0" id="seconds">00</h3><small class="text-red">Seconds</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
+<!-- Categories Section -->
 <div class="categories-section">
   <p1>Browse Categories</p1>
   <div class="categories-grid">
+    <!-- All Products Link -->
     <div class="category-item">
-      <div class="category-card {% if not category %}selected{% endif %}" style="background-image: url('https://images.unsplash.com/photo-1646065539148-6fafbf306c0e?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEwfHx8ZW58MHx8fHx8');">
+      <div class="category-card" style="background-image: url('https://images.unsplash.com/photo-1646065539148-6fafbf306c0e?w=600&auto=format&fit=crop&q=60');">
         <a href="{% url "shop:product_list" %}"></a>
       </div>
       <a href="{% url "shop:product_list" %}">
-        <div class="category-name">All~></div>
+        <div class="category-name">Highlights~></div>
       </a>
     </div>
-    
+
+    <!-- Dynamic Categories -->
     {% for c in categories %}
     <div class="category-item">
       {% if c.image %}
         <div class="category-card" style="background-image: url('{{ c.image.url }}');">
       {% else %}
-        <div class="category-card" style="background-image: url('https://images.unsplash.com/photo-1496843916299-590492c751f4?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+        <div class="category-card" style="background-image: url('https://images.unsplash.com/photo-1496843916299-590492c751f4?q=80&w=2071&auto=format&fit=crop');">
       {% endif %}
-          <a href="{{ c.get_absolute_url }}"></a>
-        </div>
-        <a href="{{ c.get_absolute_url }}">
-          <div class="category-name">{{ c.name }}~></div>
-        </a>
-    </div>
-    
-    {% endfor %}
-  </div>
-</div>
-
-<div class="products-section">
-  <h2>{% if category %}{{ category.name }}{% else %}Products{% endif %}</h2>
-  <div class="product-grid">
-    {% for product in products %}
-    <div class="product-card">
-      <a href="{{ product.get_absolute_url }}">
-        <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}" alt="{{ product.name }}">
-        <h3>{{ product.name }}</h3>
+        <a href="{{ c.get_absolute_url }}"></a>
+      </div>
+      <a href="{{ c.get_absolute_url }}">
+        <div class="category-name">{{ c.name }}~></div>
       </a>
-      <p>${{ product.price }}</p>
     </div>
     {% endfor %}
   </div>
 </div>
 
+<!-- Products Section -->
+{% if category %}
+  <!-- Category Page -->
+  <div class="products-section">
+    <h2>{{ category.name }}</h2>
+    <div class="product-grid">
+      {% for product in products %}
+      <div class="product-card">
+        <a href="{{ product.get_absolute_url }}">
+          <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}" alt="{{ product.name }}">
+          <h3>{{ product.name }}</h3>
+        </a>
+        <p>${{ product.price }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+{% else %}
+  <!-- Homepage: Show Featured Categories (products ambazo zinanunuliwa sana)-->
+  {% for section in featured_sections %}
+  <div class="products-section">
+    <h2>{{ section.category.name }} Highlights</h2>
+    <div class="product-grid">
+      {% for product in section.products %}
+      <div class="product-card">
+        <a href="{{ product.get_absolute_url }}">
+          <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}" alt="{{ product.name }}">
+          <h3>{{ product.name }}</h3>
+        </a>
+        <p>${{ product.price }}</p>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="see-all-link">
+      <a href="{{ section.category.get_absolute_url }}">See all {{ section.category.name }} products →</a>
+    </div>
+  </div>
+  {% endfor %}
+{% endif %}
+
+
+
+
+<!-- Work Section -->
+<div class="container mt-5 text-center">
+  <h2 class="text-white fw-bold mb-2">Checkout More Of Our Work</h2>
+  <p class="fs-2 text-start text-secondary">
+    We Sculpt digital experiences that last, while impacting the community and having fun.
+  </p>
+
+  <div class="scroll-container d-flex overflow-auto gap-4">
+
+    <!-- Card 1 -->
+    <div class="custom-card text-white">
+      <img src="https://images.unsplash.com/photo-1531913764164-f85c52e6e654?q=80&w=1934&auto=format&fit=crop" class="card-img-top popup-img" alt="Education">
+      <div class="d-flex justify-content-between align-items-center mt-3">
+        <img src="https://images.unsplash.com/photo-1628521153640-bce8558a271c?q=80&w=2071&auto=format&fit=crop" class="thumb-img rounded-3 popup-img">
+        <img src="https://images.unsplash.com/photo-1534438544778-dd9a3a3d1147?q=80&w=2127&auto=format&fit=crop" class="thumb-img rounded-3 popup-img">
+        <div class="bg-purple text-white px-3 py-2 rounded-3 fw-bold view-btn"
+          data-title="Working with children"
+          data-desc="Visited schools across kenya to teach children python."
+          data-video="https://www.youtube.com/embed/ScMzIvxBSi4"
+          data-gallery="https://images.unsplash.com/photo-1628521153640-bce8558a271c,https://images.unsplash.com/photo-1534438544778-dd9a3a3d1147">
+          view
+        </div>
+      </div>
+      <div class="mt-3">
+        <h5 class="fw-bold mb-1">Education</h5>
+        <small class="text-white">Impacting communities</small>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="custom-card text-white">
+      <img src="https://images.unsplash.com/photo-1595231861877-9519be503a52?q=80&w=1932&auto=format&fit=crop" class="card-img-top popup-img" alt="outdoor">
+      <div class="d-flex justify-content-between align-items-center mt-3">
+        <img src="https://images.unsplash.com/photo-1641893588018-b958a5845cab?q=80&w=2070&auto=format&fit=crop" class="thumb-img rounded-3 popup-img">
+        <img src="https://images.unsplash.com/photo-1663669066662-1c696543b852?w=600&auto=format&fit=crop" class="thumb-img rounded-3 popup-img">
+        <div class="bg-purple text-white px-3 py-2 rounded-3 fw-bold view-btn"
+          data-title="Outdoor"
+          data-desc="explored the girraffe centre."
+          data-video="https://www.youtube.com/embed/aOrzbQAS9u0"
+          data-gallery="https://images.unsplash.com/photo-1641893588018-b958a5845cab,https://images.unsplash.com/photo-1663669066662-1c696543b852">
+          view
+        </div>
+      </div>
+      <div class="mt-3">
+        <h5 class="fw-bold mb-1">Outdoors</h5>
+        <small class="text-white">visited Giraffe centre</small>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="custom-card text-white">
+      <img src="https://images.unsplash.com/photo-1744571180405-13d4fd7ee15b?w=600&auto=format&fit=crop" class="card-img-top popup-img" alt="OSHEN">
+      <div class="d-flex justify-content-between align-items-center mt-3">
+        <img src="https://images.unsplash.com/photo-1635890396699-7ddd0429a4ec?w=600&auto=format&fit=crop" class="thumb-img rounded-3 popup-img">
+        <img src="https://images.unsplash.com/photo-1659608982321-8374e0baf97b?q=80&w=1974&auto=format&fit=crop" class="thumb-img rounded-3 popup-img">
+        <div class="bg-purple text-white px-3 py-2 rounded-3 fw-bold view-btn"
+          data-title="Why OSHEN"
+          data-desc="Why choose us for your next project."
+          data-video="https://www.youtube.com/embed/V-_O7nl0Ii0"
+          data-gallery="https://images.unsplash.com/photo-1635890396699-7ddd0429a4ec,https://images.unsplash.com/photo-1659608982321-8374e0baf97b">
+          view
+        </div>
+      </div>
+      <div class="mt-3">
+        <h5 class="fw-bold mb-1">Why us?</h5>
+        <small class="text-white">Good question</small>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Popup -->
+<div id="popup" class="popup-overlay">
+  <span class="close-btn">&times;</span>
+  <div id="popupContent" class="text-center w-100"></div>
+</div>
 
   
-    <h2 class="text-white fw-bold mb-2">Trending Collection</h2>
-    <p class="text-secondary text-white fs-2">Checkout Our Weekly Updated Trending Collection.</p>
-  
-    <!-- Scrollable Horizontal Cards -->
-    <div class="scroll-container d-flex overflow-auto gap-4">
-  
-      <!-- DSGN Animals -->
-      <div class="custom-card text-white">
-        <img src="https://images.unsplash.com/photo-1531913764164-f85c52e6e654?q=80&w=1934&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="DSGN Animals">
-        <div class="d-flex justify-content-between align-items-center mt-3">
-          <img src="https://images.unsplash.com/photo-1628521153640-bce8558a271c?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="thumb-img rounded-3">
-          <img src="https://images.unsplash.com/photo-1534438544778-dd9a3a3d1147?q=80&w=2127&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="thumb-img rounded-3">
-          <div class="bg-purple text-white px-3 py-2 rounded-3 fw-bold">view</div>
-        </div>
-        <div class="mt-3">
-          <h5 class="fw-bold mb-1">Art</h5>
-          <small class="text-white">Modern Art</small>
-        </div>
+
+<!-- How It Works Section -->
+<div class="how-it-works-section py-5 text-white">
+  <div class="container text-center mb-5">
+    <h2 class="fw-bold">Interested in working with us ?</h2>
+    <p class="text-white">Find Out How To Get Started</p>
+  </div>
+  <div class="container">
+    <div class="row g-4">
+      <!-- Step 1 -->
+      <div class="col-md-4">
+        <a href="https://github.com/shenleeosialai" class="text-decoration-none">
+          <div class="step-card text-center p-4 rounded h-100">
+            <div class="step-icon mb-3">
+              <i class="fab fa-github fa-2x text-white"></i>
+            </div>
+            <h5 class="mb-2 text-white">Github</h5>
+            <p class="text-white">Follow and star our repositories</p>
+          </div>
+        </a>
       </div>
-  
-      <!-- Magic Mushrooms -->
-      <div class="custom-card text-white">
-        <img src="https://images.unsplash.com/photo-1595231861877-9519be503a52?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="card-img-top" alt="Magic Mushrooms">
-        <div class="d-flex justify-content-between align-items-center mt-3">
-          <img src="https://images.unsplash.com/photo-1641893588018-b958a5845cab?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="thumb-img rounded-3">
-          <img src="https://images.unsplash.com/photo-1663669066662-1c696543b852?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDF8fHxlbnwwfHx8fHw%3D" class="thumb-img rounded-3">
-          <div class="bg-purple text-white px-3 py-2 rounded-3 fw-bold">view</div>
-        </div>
-        <div class="mt-3">
-          <h5 class="fw-bold mb-1">Mentor</h5>
-          <small class="text-white">Mr.einstein</small>
-        </div>
+      <!-- Step 2 -->
+      <div class="col-md-4">
+        <a href="https://www.linkedin.com/in/shen-lee-osialai-089403251" class="text-decoration-none">
+          <div class="step-card text-center p-4 rounded h-100">
+            <div class="step-icon mb-3">
+              <i class="fab fa-linkedin fa-2x text-white"></i>
+            </div>
+            <h5 class="mb-2 text-white">LinkedIn</h5>
+            <p class="text-white">Reach out, Follow and let us network</p>
+          </div>
+        </a>
       </div>
-  
-      <!-- Disco Machines -->
-      <div class="custom-card text-white">
-        <img src="https://images.unsplash.com/photo-1744571180405-13d4fd7ee15b?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bW9kZXJuJTIwYXJ0JTIwc3Vuc2V0JTIwcGFpbnRpbmd8ZW58MHwwfDB8fHwy" class="card-img-top" alt="Disco Machines">
-        <div class="d-flex justify-content-between align-items-center mt-3">
-          <img src="https://images.unsplash.com/photo-1635890396699-7ddd0429a4ec?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG1vZGVybiUyMGFydCUyMHN1bnNldCUyMHBhaW50aW5nfGVufDB8MHwwfHx8Mg%3D%3D" class="thumb-img rounded-3">
-          <img src="https://images.unsplash.com/photo-1659608982321-8374e0baf97b?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="thumb-img rounded-3">
-          <div class="bg-purple text-white px-3 py-2 rounded-3 fw-bold">view</div>
-        </div>
-        <div class="mt-3">
-          <h5 class="fw-bold mb-1">Scenery</h5>
-          <small class="text-white">sunsets</small>
-        </div>
+      <!-- Step 3 -->
+      <div class="col-md-4">
+        <a href="https://www.instagram.com/_.shenlee?igsh=a3B0cnh1d2pqenp2&utm_source=qr" class="text-decoration-none">
+          <div class="step-card text-center p-4 rounded h-100">
+            <div class="step-icon mb-3">
+              <i class="fab fa-instagram fa-2x text-white"></i>
+            </div>
+            <h5 class="mb-2 text-white">Instagram</h5>
+            <p class="text-white">Get to know our CEO.</p>
+          </div>
+        </a>
       </div>
-  
     </div>
+  </div>
+</div>
+
+
+    
     <footer style="text-align: center; padding: 20px; background-color: #000000; border-top: 1px solid #ddd;">
       <p1 style="color: #ffffff;">&copy; OSHEN COMICS 2025</p1><br>
-      <p1>
-        <a href="https://www.instagram.com/_.shenlee?igsh=a3B0cnh1d2pqenp2&utm_source=qr" target="_blank" style="margin: 0 10px; text-decoration: none; color: #ffffff;">
-          <i class="fab fa-instagram" style="font-size: 24px;"></i> Instagram
-        </a>
-        <a href="https://www.linkedin.com/in/shen-lee-osialai-089403251" target="_blank" style="margin: 0 10px; text-decoration: none; color: #ffffff;">
-          <i class="fab fa-linkedin" style="font-size: 24px;"></i> LinkedIn
-        </a>
-        <a href="https://github.com/shenleeosialai" target="_blank" style="margin: 0 10px; text-decoration: none; color: #ffffff;">
-          <i class="fab fa-github" style="font-size: 24px;"></i> GitHub
-        </a>
-      </p1>
     </footer>
+    
+    <script>
+      const popup = document.getElementById("popup");
+      const popupContent = document.getElementById("popupContent");
+      const closeBtn = document.querySelector(".close-btn");
+    
+      // Open popup with single image
+      document.querySelectorAll(".popup-img").forEach(img => {
+        img.addEventListener("click", () => {
+          popupContent.innerHTML = `<img src="${img.src}" alt="Popup Image">`;
+          popup.classList.add("show");
+        });
+      });
+    
+      // Open popup with rich content
+      document.querySelectorAll(".view-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const title = btn.dataset.title || "Project";
+          const desc = btn.dataset.desc || "";
+          const video = btn.dataset.video;
+          const gallery = btn.dataset.gallery?.split(",") || [];
+    
+          let galleryHTML = '';
+          if (gallery.length > 0) {
+            galleryHTML = `<div class="popup-gallery mt-3">` +
+              gallery.map(img => `<img src="${img.trim()}" alt="Gallery Image">`).join('') +
+              `</div>`;
+          }
+    
+          popupContent.innerHTML = `
+            <div class="popup-content text-start">
+              <h3>${title}</h3>
+              <p>${desc}</p>
+              ${video ? `<iframe src="${video}" allowfullscreen></iframe>` : ''}
+              ${galleryHTML}
+            </div>
+          `;
+          popup.classList.add("show");
+        });
+      });
+    
+      closeBtn.addEventListener("click", () => {
+        popup.classList.remove("show");
+        popupContent.innerHTML = "";
+      });
+    
+      popup.addEventListener("click", (e) => {
+        if (e.target === popup) {
+          popup.classList.remove("show");
+          popupContent.innerHTML = "";
+        }
+      });
+    </script>
+    
+
+    <script>
+      // Set default countdown duration (e.g., 1 hour = 3600000ms)
+      const countdownDuration = 30 * 24 * 60 * 60 * 1000; // 1 hour
+    
+      // Initialize the countdown end time
+      let countdownDate = new Date().getTime() + countdownDuration;
+    
+      const updateTimer = () => {
+        const now = new Date().getTime();
+        let distance = countdownDate - now;
+    
+        // If countdown ends, reset it to now + duration
+        if (distance <= 0) {
+          countdownDate = new Date().getTime() + countdownDuration;
+          distance = countdownDate - now;
+        }
+    
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((distance / (1000 * 60)) % 60);
+        const seconds = Math.floor((distance / 1000) % 60);
+    
+        document.getElementById("days").textContent = String(days).padStart(2, "0");
+        document.getElementById("hours").textContent = String(hours).padStart(2, "0");
+        document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
+        document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
+      };
+    
+      updateTimer();
+      setInterval(updateTimer, 1000);
+    </script>
     
 {% endblock %}
