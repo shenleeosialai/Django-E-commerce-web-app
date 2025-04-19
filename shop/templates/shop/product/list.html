@@ -68,15 +68,16 @@
         <a href="{{ product.get_absolute_url }}" class="btn btn-light mt-3 px-4 py-2">shop now~></a>
       </div>
       <div class="col-md-6 text-center text-md-end mt-4 mt-md-0">
-        <div class="timer-box p-3 rounded">
-          <small class="text-uppercase text-red d-block mb-2">Flash ends in:</small>
-          <div class="d-flex justify-content-center gap-4" id="countdown">
-            <div><h3 class="mb-0" id="days">00</h3><small class="text-red">Days</small></div>
-            <div><h3 class="mb-0" id="hours">00</h3><small class="text-red">Hours</small></div>
-            <div><h3 class="mb-0" id="minutes">00</h3><small class="text-red">Minutes</small></div>
-            <div><h3 class="mb-0" id="seconds">00</h3><small class="text-red">Seconds</small></div>
+        <!-- Countdown Wrapper -->
+          <div id="countdown-wrapper" class="timer-box p-3 rounded">
+            <small class="text-uppercase text-red d-block mb-2">Flash ends in:</small>
+            <div class="d-flex justify-content-center gap-4" id="countdown">
+              <div><h3 class="mb-0" id="days">00</h3><small class="text-red">Days</small></div>
+              <div><h3 class="mb-0" id="hours">00</h3><small class="text-red">Hours</small></div>
+              <div><h3 class="mb-0" id="minutes">00</h3><small class="text-red">Minutes</small></div>
+              <div><h3 class="mb-0" id="seconds">00</h3><small class="text-red">Seconds</small></div>
+            </div>
           </div>
-        </div>
       </div>
     </div>
   </div>
@@ -207,6 +208,26 @@
     </div>
 
     <!-- Card 3 -->
+    <div class="custom-card text-white">
+      <img src="https://images.unsplash.com/photo-1595231861877-9519be503a52?q=80&w=1932&auto=format&fit=crop" class="card-img-top popup-img" alt="outdoor">
+      <div class="d-flex justify-content-between align-items-center mt-3">
+        <img src="https://images.unsplash.com/photo-1641893588018-b958a5845cab?q=80&w=2070&auto=format&fit=crop" class="thumb-img rounded-3 popup-img">
+        <img src="https://images.unsplash.com/photo-1663669066662-1c696543b852?w=600&auto=format&fit=crop" class="thumb-img rounded-3 popup-img">
+        <div class="bg-purple text-white px-3 py-2 rounded-3 fw-bold view-btn"
+          data-title="Outdoor"
+          data-desc="explored the girraffe centre."
+          data-video="https://www.youtube.com/embed/aOrzbQAS9u0"
+          data-gallery="https://images.unsplash.com/photo-1641893588018-b958a5845cab,https://images.unsplash.com/photo-1663669066662-1c696543b852">
+          view
+        </div>
+      </div>
+      <div class="mt-3">
+        <h5 class="fw-bold mb-1">Outdoors</h5>
+        <small class="text-white">visited Giraffe centre</small>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
     <div class="custom-card text-white">
       <img src="https://images.unsplash.com/photo-1744571180405-13d4fd7ee15b?w=600&auto=format&fit=crop" class="card-img-top popup-img" alt="OSHEN">
       <div class="d-flex justify-content-between align-items-center mt-3">
@@ -344,37 +365,48 @@
       });
     </script>
     
-
+   
     <script>
-      // Set default countdown duration (e.g., 1 hour = 3600000ms)
-      const countdownDuration = 30 * 24 * 60 * 60 * 1000; // 1 hour
+      //created an API that sends end_date as a JSON response,frontend JavaScript fetches that end_date and builds the countdown timer.
+      fetch('/api/countdown/')
+        .then(res => res.json())
+        .then(data => {
+          const targetDate = new Date(data.end_date).getTime();
     
-      // Initialize the countdown end time
-      let countdownDate = new Date().getTime() + countdownDuration;
+          const updateCountdown = () => {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
     
-      const updateTimer = () => {
-        const now = new Date().getTime();
-        let distance = countdownDate - now;
+            if (distance < 0) {
+                document.getElementById("countdown").innerHTML = `
+                  <div class="text-danger">
+                    <h4 class="mb-0">⏰ Sale Ended!</h4>
+                  </div>
+                `;
+                return;
+              }
+
     
-        // If countdown ends, reset it to now + duration
-        if (distance <= 0) {
-          countdownDate = new Date().getTime() + countdownDuration;
-          distance = countdownDate - now;
-        }
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
     
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
-        const minutes = Math.floor((distance / (1000 * 60)) % 60);
-        const seconds = Math.floor((distance / 1000) % 60);
+            document.getElementById("days").textContent = String(days).padStart(2, '0');
+            document.getElementById("hours").textContent = String(hours).padStart(2, '0');
+            document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
+            document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
+          };
     
-        document.getElementById("days").textContent = String(days).padStart(2, "0");
-        document.getElementById("hours").textContent = String(hours).padStart(2, "0");
-        document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
-        document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
-      };
-    
-      updateTimer();
-      setInterval(updateTimer, 1000);
+          updateCountdown();
+          setInterval(updateCountdown, 1000);
+        })
+        .catch(error => {
+          console.error('Countdown fetch error:', error);
+        });
+        console.log(data.end_date)
     </script>
+    
+    
     
 {% endblock %}

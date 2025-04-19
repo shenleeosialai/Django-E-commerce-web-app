@@ -56,3 +56,11 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Countdown(models.Model):
+    title = models.CharField(max_length=100, default="Sale Ends In")
+    end_date = models.DateTimeField()
+
+    def __str__(self):
+        return f"{self.title} - {self.end_date}"

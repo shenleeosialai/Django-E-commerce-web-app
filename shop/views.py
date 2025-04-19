@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from cart.forms import CartAddProductForm
 from .models import Category, Product
 from .recommender import Recommender
+from .models import Countdown
+from django.http import JsonResponse
 
 
 def product_list(request, category_slug=None):
@@ -48,3 +50,11 @@ def product_detail(request, id, slug):
                   {'product': product,
                    'cart_product_form': cart_product_form,
                    'recommended_products': recommended_products})
+
+
+def countdown_data(request):
+    countdown = Countdown.objects.last()
+    return JsonResponse({
+        'title': countdown.title,
+        'end_date': countdown.end_date.isoformat()
+    })
