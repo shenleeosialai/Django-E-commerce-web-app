@@ -1,0 +1,25 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% block content %}
+
+<h1>{{ category.name }}</h1>
+
+<div class="product-grid">
+  {% for product in products %}
+    <div class="product-card">
+      <a href="{{ product.get_absolute_url }}">
+        {% if product.image %}
+          <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        {% else %}
+          <img src="{% static 'img/no_image.png' %}" alt="{{ product.name }}">
+        {% endif %}
+        <h3>{{ product.name }}</h3>
+      </a>
+      <p>${{ product.price }}</p>
+    </div>
+  {% empty %}
+    <p>COMING SOON <span style="color: red; font-size: xx-large;">!</span></p>
+  {% endfor %}
+</div>
+
+{% endblock content %}

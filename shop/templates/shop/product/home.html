@@ -65,7 +65,7 @@
         </div>
         <h1 class="display-4 fw-bold">shop while products are 30% off</h1>
         <small class="text-uppercase text-red d-block mb-2">use code "oshen" as coupon</small>
-        <a href="{{ product.get_absolute_url }}" class="btn btn-light mt-3 px-4 py-2">shop now~></a>
+        <a href="{% url 'shop:product_list' %}" class="btn btn-light mt-3 px-4 py-2">shop now~></a>
       </div>
       <div class="col-md-6 text-center text-md-end mt-4 mt-md-0">
         <!-- Countdown Wrapper -->
@@ -116,23 +116,7 @@
 </div>
 
 <!-- Products Section -->
-{% if category %}
-  <!-- Category Page -->
-  <div class="products-section">
-    <h2>{{ category.name }}</h2>
-    <div class="product-grid">
-      {% for product in products %}
-      <div class="product-card">
-        <a href="{{ product.get_absolute_url }}">
-          <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}" alt="{{ product.name }}">
-          <h3>{{ product.name }}</h3>
-        </a>
-        <p>${{ product.price }}</p>
-      </div>
-      {% endfor %}
-    </div>
-  </div>
-{% else %}
+
   <!-- Homepage: Show Featured Categories (products ambazo zinanunuliwa sana)-->
   {% for section in featured_sections %}
   <div class="products-section">
@@ -153,97 +137,97 @@
     </div>
   </div>
   {% endfor %}
-{% endif %}
+
 
 
 
 
 <!-- Work Section -->
 <div class="container mt-5 text-center">
-  <h2 class="text-white fw-bold mb-2">Checkout More Of Our Work</h2>
+  <h2 class="text-white fw-bold mb-2">Checkout More Of DC and Marvel</h2>
   <p class="fs-2 text-start text-secondary">
-    We Sculpt digital experiences that last, while impacting the community and having fun.
+    Checkout trailers of your latest dc and marvel movies.
   </p>
 
   <div class="scroll-container d-flex overflow-auto gap-4">
 
     <!-- Card 1 -->
     <div class="custom-card text-white">
-      <img src="https://images.unsplash.com/photo-1531913764164-f85c52e6e654?q=80&w=1934&auto=format&fit=crop" class="card-img-top popup-img" alt="Education">
+      <img src="https://yt3.ggpht.com/uRMwN5BUJTv2URQ9pMGAFCPe66cshUohgKwu9BHazGguzruR-A5Q2i6TiN3wfyJN6NVmPFFex5MBnOU=s1350-rw-nd-v1" class="card-img-top popup-img" alt="Education">
       <div class="d-flex justify-content-between align-items-center mt-3">
-        <img src="https://images.unsplash.com/photo-1628521153640-bce8558a271c?q=80&w=2071&auto=format&fit=crop" class="thumb-img rounded-3 popup-img">
-        <img src="https://images.unsplash.com/photo-1534438544778-dd9a3a3d1147?q=80&w=2127&auto=format&fit=crop" class="thumb-img rounded-3 popup-img">
+        <img src="https://upload.wikimedia.org/wikipedia/en/0/0a/The_Fantastic_Four_First_Steps_Valentines_Day_artwork.jpg" class="thumb-img rounded-3 popup-img">
+        <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fencrypted-tbn2.gstatic.com%2Fimages%3Fq%3Dtbn%3AANd9GcQjCfD6zDQL-x19acm_k6WwjuImyE1uLCTlMmGCrNl7sjj8vq9h&psig=AOvVaw382Hsx6tCTjXLu6BwdL9X8&ust=1745291548131000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCKDEyeqT6IwDFQAAAAAdAAAAABAE" class="thumb-img rounded-3 popup-img">
         <div class="bg-purple text-white px-3 py-2 rounded-3 fw-bold view-btn"
-          data-title="Working with children"
-          data-desc="Visited schools across kenya to teach children python."
-          data-video="https://www.youtube.com/embed/ScMzIvxBSi4"
-          data-gallery="https://images.unsplash.com/photo-1628521153640-bce8558a271c,https://images.unsplash.com/photo-1534438544778-dd9a3a3d1147">
+          data-title="Fantastic 4 trailer"
+          data-desc="First Steps arrives in theaters July 25"
+          data-video="https://www.youtube.com/embed/pAsmrKyMqaA"
+          data-gallery="https://yt3.ggpht.com/uRMwN5BUJTv2URQ9pMGAFCPe66cshUohgKwu9BHazGguzruR-A5Q2i6TiN3wfyJN6NVmPFFex5MBnOU=s1350-rw-nd-v1">
           view
         </div>
       </div>
       <div class="mt-3">
-        <h5 class="fw-bold mb-1">Education</h5>
-        <small class="text-white">Impacting communities</small>
+        <h5 class="fw-bold mb-1">Fantastic 4</h5>
+        <small class="text-white">First steps</small>
       </div>
     </div>
 
     <!-- Card 2 -->
     <div class="custom-card text-white">
-      <img src="https://images.unsplash.com/photo-1595231861877-9519be503a52?q=80&w=1932&auto=format&fit=crop" class="card-img-top popup-img" alt="outdoor">
+      <img src="https://yt3.ggpht.com/K-CAxu4yIX3Gg3GJib5-Th7lOMCVBYMihzNuXtjr-lUgVGSHH-D67hzJX-fvAH-6J0Covpr_y1u7=s1350-rw-nd-v1" class="card-img-top popup-img" alt="outdoor">
       <div class="d-flex justify-content-between align-items-center mt-3">
-        <img src="https://images.unsplash.com/photo-1641893588018-b958a5845cab?q=80&w=2070&auto=format&fit=crop" class="thumb-img rounded-3 popup-img">
-        <img src="https://images.unsplash.com/photo-1663669066662-1c696543b852?w=600&auto=format&fit=crop" class="thumb-img rounded-3 popup-img">
+        <img src="https://yt3.ggpht.com/2st0WUq93UPVSWBe-Wzd9pULfvprd1xWD2-Br-k3RV1khRzbXisoMcE9dKjkwBdIkotln8puMxACEA=s1350-rw-nd-v1" class="thumb-img rounded-3 popup-img">
+        <img src="https://yt3.ggpht.com/7ar7AoC64v5mUf5-nilVQ-38Xx10Gpwo74HUiAQCLEAcDEZZi9BEkcf-w_7Z5qTCJLhdsH2goiV4=s1350-rw-nd-v1" class="thumb-img rounded-3 popup-img">
         <div class="bg-purple text-white px-3 py-2 rounded-3 fw-bold view-btn"
-          data-title="Outdoor"
-          data-desc="explored the girraffe centre."
-          data-video="https://www.youtube.com/embed/aOrzbQAS9u0"
-          data-gallery="https://images.unsplash.com/photo-1641893588018-b958a5845cab,https://images.unsplash.com/photo-1663669066662-1c696543b852">
+          data-title="Dare devil"
+          data-desc="born again."
+          data-video="https://www.youtube.com/embed/triWSBTvmfk"
+          data-gallery="https://yt3.ggpht.com/K-CAxu4yIX3Gg3GJib5-Th7lOMCVBYMihzNuXtjr-lUgVGSHH-D67hzJX-fvAH-6J0Covpr_y1u7=s1350-rw-nd-v1">
           view
         </div>
       </div>
       <div class="mt-3">
-        <h5 class="fw-bold mb-1">Outdoors</h5>
-        <small class="text-white">visited Giraffe centre</small>
+        <h5 class="fw-bold mb-1">Daredevil</h5>
+        <small class="text-white">born again</small>
       </div>
     </div>
 
     <!-- Card 3 -->
     <div class="custom-card text-white">
-      <img src="https://images.unsplash.com/photo-1595231861877-9519be503a52?q=80&w=1932&auto=format&fit=crop" class="card-img-top popup-img" alt="outdoor">
+      <img src="https://media-cldnry.s-nbcnews.com/image/upload/t_fit-1000w,f_auto,q_auto:best/rockcms/2024-12/241219-superman-ch-1409-058eb8.jpg" class="card-img-top popup-img" alt="outdoor">
       <div class="d-flex justify-content-between align-items-center mt-3">
-        <img src="https://images.unsplash.com/photo-1641893588018-b958a5845cab?q=80&w=2070&auto=format&fit=crop" class="thumb-img rounded-3 popup-img">
-        <img src="https://images.unsplash.com/photo-1663669066662-1c696543b852?w=600&auto=format&fit=crop" class="thumb-img rounded-3 popup-img">
+        <img src="https://variety.com/wp-content/uploads/2024/12/superman-2.jpg?w=1000&h=667&crop=1&resize=1360%2C907" class="thumb-img rounded-3 popup-img">
+        <img src="https://www.rollingstone.com/wp-content/uploads/2024/12/Superman_Trailergrab.jpg?w=1581&h=1054&crop=1" class="thumb-img rounded-3 popup-img">
         <div class="bg-purple text-white px-3 py-2 rounded-3 fw-bold view-btn"
-          data-title="Outdoor"
-          data-desc="explored the girraffe centre."
-          data-video="https://www.youtube.com/embed/aOrzbQAS9u0"
-          data-gallery="https://images.unsplash.com/photo-1641893588018-b958a5845cab,https://images.unsplash.com/photo-1663669066662-1c696543b852">
+          data-title="Superman"
+          data-desc="superman day."
+          data-video="https://www.youtube.com/embed/xFU8U4UVUBs"
+          data-gallery="https://variety.com/wp-content/uploads/2024/12/superman-2.jpg?w=1000&h=667&crop=1&resize=1360%2C907">
           view
         </div>
       </div>
       <div class="mt-3">
-        <h5 class="fw-bold mb-1">Outdoors</h5>
-        <small class="text-white">visited Giraffe centre</small>
+        <h5 class="fw-bold mb-1">superman</h5>
+        <small class="text-white">superman day</small>
       </div>
     </div>
 
     <!-- Card 4 -->
     <div class="custom-card text-white">
-      <img src="https://images.unsplash.com/photo-1744571180405-13d4fd7ee15b?w=600&auto=format&fit=crop" class="card-img-top popup-img" alt="OSHEN">
+      <img src="https://linkstorage.linkfire.com/medialinks/images/43f5951f-9ec5-4e83-9a1f-fd0968d69af9/artwork-440x440" class="card-img-top popup-img" alt="OSHEN">
       <div class="d-flex justify-content-between align-items-center mt-3">
-        <img src="https://images.unsplash.com/photo-1635890396699-7ddd0429a4ec?w=600&auto=format&fit=crop" class="thumb-img rounded-3 popup-img">
-        <img src="https://images.unsplash.com/photo-1659608982321-8374e0baf97b?q=80&w=1974&auto=format&fit=crop" class="thumb-img rounded-3 popup-img">
+        <img src="https://static.dc.com/2025-03/2025_03_28_GothamGazette_BlogRoll_Mobile_4x3.jpg" class="thumb-img rounded-3 popup-img">
+        <img src="https://i.ytimg.com/vi/agXVZwD957E/maxresdefault.jpg" class="thumb-img rounded-3 popup-img">
         <div class="bg-purple text-white px-3 py-2 rounded-3 fw-bold view-btn"
-          data-title="Why OSHEN"
-          data-desc="Why choose us for your next project."
-          data-video="https://www.youtube.com/embed/V-_O7nl0Ii0"
-          data-gallery="https://images.unsplash.com/photo-1635890396699-7ddd0429a4ec,https://images.unsplash.com/photo-1659608982321-8374e0baf97b">
+          data-title="batman"
+          data-desc="high volume."
+          data-video="https://www.youtube.com/embed/NmNnCjTNYX8"
+          data-gallery="https://linkstorage.linkfire.com/medialinks/images/43f5951f-9ec5-4e83-9a1f-fd0968d69af9/artwork-440x440">
           view
         </div>
       </div>
       <div class="mt-3">
-        <h5 class="fw-bold mb-1">Why us?</h5>
-        <small class="text-white">OSHEN</small>
+        <h5 class="fw-bold mb-1">batman </h5>
+        <small class="text-white">high volume</small>
       </div>
     </div>
 
