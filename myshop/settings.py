@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +26,8 @@ SECRET_KEY = 'django-insecure-xiv%$br!y=#+0q(0!gf09xxz2v%+vws&fa)%mxo7n1)0)nxxq-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [ ]
+
 
 
 # Application definition
@@ -147,3 +149,11 @@ STATIC_ROOT = BASE_DIR / 'static'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CART_SESSION_ID = 'cart'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+MPESA_CONSUMER_KEY = config('vhSLZmVObvLJWNmXCtV5ZoogQitiyfB8pgZAugUAua8klqZ8')
+MPESA_CONSUMER_SECRET = config('1XLlFcz92xgPJ5G1JdIPFX628K4aCbGWxaH4AomlBXJcG0glUkwfVgFazLgiP111')
+MPESA_PASSKEY = config('bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919')
+MPESA_SHORTCODE = '174379'  # Test shortcode or your Paybill
+MPESA_CALLBACK_URL = 'https://2509-41-90-178-31.ngrok-free.app/payment/mpesa-callback/'  # Your endpoint
+MPESA_API_BASE_URL = 'https://sandbox.safaricom.co.ke'  # or live URL

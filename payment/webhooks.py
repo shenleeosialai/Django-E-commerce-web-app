@@ -4,6 +4,8 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from orders.models import Order
 from .tasks import payment_completed
+import json
+from django.http import JsonResponse
 
 
 @csrf_exempt
@@ -40,3 +42,26 @@ def stripe_webhook(request):
             payment_completed.delay(order.id)
 
     return HttpResponse(status=200)
+
+
+@csrf_exempt
+def mpesa_callback(request):
+    data = json.loads(request.body.decode('utf-8'))
+    stk_callback = data.get("Body", {}).get("stkCallback", {})
+
+    if stk_callback.get("ResultCode") == 0:
+        metadata = stk_callback.get("CallbackMetadata", {}).get("Item", [])
+        phone = next((item["Value"] for item in metadata if item["Name"] == "PhoneNumber"), None)
+        mpesa_code = next((item["Value"] for item in metadata if item["Name"] == "MpesaReceiptNumber"), None)
+        amount = next((item["Value"] for item in metadata if item["Name"] == "Amount"), None)
+
+        # Find and update the order
+        try:
+            order = Order.objects.filter(email=request.GET.get("email")).last()  # customize as needed
+            order.paid = True
+            order.mpesa_code = mpesa_code
+            order.save()
+        except Order.DoesNotExist:
+            pass
+
+    return JsonResponse({"ResultCode": 0, "ResultDesc": "Accepted"})

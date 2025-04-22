@@ -56,8 +56,40 @@
       </tr>
     </tbody>
   </table>
-  <form action="{% url "payment:process" %}" method="post">
-    <input type="submit" value="Pay now">
+
+  <form action="{% url 'payment:process' %}" method="post" id="payment-form">
     {% csrf_token %}
+
+    <h2>Select Payment Method</h2>
+    <label>
+      <input type="radio" name="payment_method" value="stripe" checked>
+      Pay with Card (Stripe)
+    </label><br>
+    <label>
+      <input type="radio" name="payment_method" value="mpesa">
+      Pay with M-Pesa
+    </label><br><br>
+
+    <div id="mpesa-fields" style="display: none;">
+      <label for="phone">Enter M-Pesa phone number:</label><br>
+      <input type="tel" name="phone" placeholder="e.g. 254712345678"><br><br>
+    </div>
+
+    <input type="submit" value="Pay now">
   </form>
+
+  <script>
+    const paymentRadios = document.querySelectorAll('input[name="payment_method"]');
+    const mpesaFields = document.getElementById('mpesa-fields');
+
+    paymentRadios.forEach(radio => {
+      radio.addEventListener('change', function () {
+        if (this.value === 'mpesa') {
+          mpesaFields.style.display = 'block';
+        } else {
+          mpesaFields.style.display = 'none';
+        }
+      });
+    });
+  </script>
 {% endblock %}
