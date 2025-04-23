@@ -702,3 +702,10 @@ iframe {
   object-fit: cover;
   border-radius: 10px;
 }
+@media (max-width: 768px) {
+  .caption-below {
+    font-size: 0.9rem;
+    padding: 0.5rem;
+  }
+}
+

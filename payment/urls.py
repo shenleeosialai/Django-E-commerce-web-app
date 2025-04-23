@@ -11,4 +11,5 @@ urlpatterns = [
     path('webhook/', webhooks.stripe_webhook, name='stripe-webhook'),
     path('mpesa/initiate/', views.mpesa_initiate, name='mpesa_initiate'),
     path('mpesa-callback/', views.mpesa_callback, name='mpesa-callback'),
+    path('check-status/', views.check_status, name='check_status'),
 ]

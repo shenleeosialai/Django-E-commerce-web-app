@@ -2,12 +2,13 @@ from decimal import Decimal
 import stripe
 import json
 from django.conf import settings
-from django.shortcuts import render, redirect, reverse, get_object_or_404
-from django.http import JsonResponse, HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 from orders.models import Order
-from payment.mpesa.client import MpesaClient  # Make sure this is correctly implemented
+from payment.mpesa.client import MpesaClient
+from payment.tasks import payment_completed
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 stripe.api_version = settings.STRIPE_API_VERSION
@@ -21,8 +22,8 @@ def payment_process(request):
         payment_method = request.POST.get('payment_method', 'stripe')
 
         if payment_method == 'stripe':
-            success_url = request.build_absolute_uri(reverse('payment:completed'))
-            cancel_url = request.build_absolute_uri(reverse('payment:canceled'))
+            success_url = request.build_absolute_uri(reversed('payment:completed'))
+            cancel_url = request.build_absolute_uri(reversed('payment:canceled'))
 
             session_data = {
                 'mode': 'payment',
@@ -119,8 +120,30 @@ def mpesa_initiate(request):
 
 @csrf_exempt
 def mpesa_callback(request):
-    data = json.loads(request.body)
-    print("M-Pesa Callback received:", data)
-    # You can process the data and update order status here
-    return JsonResponse({"message": "Callback received"})
-    # return HttpResponse(status=200)
+    # Get JSON data
+    data = json.loads(request.body.decode('utf-8'))
+    result_code = data['Body']['stkCallback']['ResultCode']
+    order_id = data['Body']['stkCallback']['CallbackMetadata']['Item'][0]['Value']  # or however you're storing order_id
+
+    if result_code == 0:
+        order = Order.objects.get(id=order_id)
+        order.paid = True
+        order.save()
+
+        # Send invoice via email
+        payment_completed.delay(order.id)
+
+        return JsonResponse({"status": "Payment successful, invoice sent."})
+
+    return JsonResponse({"status": "Payment failed."})
+
+
+def check_status(request):
+    order_id = request.session.get('order_id')
+    if order_id:
+        try:
+            order = Order.objects.get(id=order_id)
+            return JsonResponse({'paid': order.paid})
+        except Order.DoesNotExist:
+            return JsonResponse({'paid': False})
+    return JsonResponse({'paid': False})
