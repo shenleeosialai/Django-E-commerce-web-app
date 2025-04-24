@@ -17,7 +17,7 @@ class Order(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     paid = models.BooleanField(default=False)
-    download_link_sent = models.BooleanField(default=False) # i removed this but was lazy to makemigrations
+    download_link_sent = models.BooleanField(default=False)  # i removed this but was lazy to makemigrations
     mpesa_code = models.CharField(max_length=100, blank=True, null=True)
     paid_via = models.CharField(max_length=20, blank=True, null=True, choices=[('stripe', 'Stripe'), ('mpesa', 'M-Pesa')])
     stripe_id = models.CharField(max_length=250, blank=True)

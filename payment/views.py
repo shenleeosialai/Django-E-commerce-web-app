@@ -8,7 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib import messages
 from orders.models import Order
 from payment.mpesa.client import MpesaClient
-from payment.tasks import payment_completed
+
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 stripe.api_version = settings.STRIPE_API_VERSION
@@ -123,7 +123,7 @@ def mpesa_callback(request):
     # Get JSON data
     data = json.loads(request.body.decode('utf-8'))
     result_code = data['Body']['stkCallback']['ResultCode']
-    order_id = data['Body']['stkCallback']['CallbackMetadata']['Item'][0]['Value']  # or however you're storing order_id
+    order_id = data['Body']['stkCallback']['CallbackMetadata']['Item'][0]['Value']
 
     if result_code == 0:
         order = Order.objects.get(id=order_id)
