@@ -37,7 +37,7 @@ def payment_process(request):
                 session_data['line_items'].append({
                     'price_data': {
                         'unit_amount': int(item.price * Decimal('100')),
-                        'currency': 'usd',
+                        'currency': 'ksh',
                         'product_data': {
                             'name': item.product.name,
                         },

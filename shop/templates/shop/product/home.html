@@ -136,11 +136,44 @@
   {% endfor %}
 
 
-
+  <section class="py-5 bg-custom text-white">
+    <div class="scrolling-cont">
+      <div class="row align-items-center">
+        <!-- Left Column -->
+        <div class="col-md-6">
+          <h1 class="display-4 fw-bold">Discover More Comic Books In our Weekly Updates</h1>
+          <p class="lead mt-3">Browse through our collection of comic books updated weekly.</p>
+          <a href="#" class="btn btn-lg btn-primary mt-3">🚀 Get Started by scrolling here~></a>
+  
+          <div class="d-flex mt-5 gap-5">
+            <div><h4>2+</h4><p>Weekly updates</p></div>
+            <div><h4>1#</h4><p>Premium comics</p></div>
+            <div><h4>10+</h4><p>Collections</p></div>
+          </div>
+        </div>
+  
+       <!-- Right Column: Scrollable NFT Cards -->
+<div class="col-md-6">
+  <div class="scrolling-cards d-flex overflow-auto gap-4 py-3">
+    {% for nft in nfts %}
+    <a href="{{ nft.pdf.url }}" download class="card bg-secondary text-white text-decoration-none nft-card">
+      <div class="nft-image-wrapper">
+        <img src="{{ nft.image.url }}" class="card-img-top" alt="NFT Image">
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{ nft.title }}</h5>
+        <p class="card-text">{{ nft.artist_name }}</p>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+</section>
+  
 
 
 <!-- Work Section -->
-<div class="container mt-5 text-center">
+<div class="container-fluid mt-5 text-center">
   <h2 class="text-white fw-bold mb-2">Checkout More Of DC and Marvel</h2>
   <p class="fs-2 text-start text-secondary">
     Checkout trailers of your latest dc and marvel movies.
@@ -289,9 +322,9 @@
 
 
     
-    <footer style="text-align: center; padding: 20px; background-color: #000000; border-top: 1px solid #ddd;">
-      <p1 style="color: #ffffff;">&copy; OSHEN COMICS 2025</p1><br>
-    </footer>
+<footer style="text-align: center; padding: 20px; background-color: #000000; border-top: 1px solid #ddd;">
+    <p1 style="color: #ffffff;">&copy; OSHEN COMICS 2025</p1><br>
+</footer>
     
     <script>
       const popup = document.getElementById("popup");
@@ -387,7 +420,7 @@
         });
         console.log(data.end_date)
     </script>
-    
+   
     
     
 {% endblock %}

@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import Category, Product
 from .models import Countdown
+from .models import NFTCard
 
 
 # Register your models here.
@@ -20,3 +21,5 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Countdown)
+
+admin.site.register(NFTCard)

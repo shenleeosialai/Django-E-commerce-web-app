@@ -64,3 +64,13 @@ class Countdown(models.Model):
 
     def __str__(self):
         return f"{self.title} - {self.end_date}"
+
+
+class NFTCard(models.Model):
+    title = models.CharField(max_length=100)
+    artist_name = models.CharField(max_length=100)
+    image = models.ImageField(upload_to='nft/images/')
+    pdf = models.FileField(upload_to='nft/pdfs/')
+
+    def __str__(self):
+        return self.title

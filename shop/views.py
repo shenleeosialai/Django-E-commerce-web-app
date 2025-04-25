@@ -4,6 +4,7 @@ from .models import Category, Product
 from .recommender import Recommender
 from .models import Countdown
 from django.http import JsonResponse
+from .models import NFTCard
 
 
 def product_list(request, category_slug=None):
@@ -28,10 +29,13 @@ def product_list(request, category_slug=None):
             'category': c,
             'products': featured_products
         })
+    # Load NFT cards for homepage
+    nfts = NFTCard.objects.all()
 
     return render(request, 'shop/product/home.html', {
         'categories': categories,
         'featured_sections': featured_sections,
+        'nfts': nfts,
     })
 
 
@@ -56,3 +60,9 @@ def countdown_data(request):
         'title': countdown.title,
         'end_date': countdown.end_date.isoformat()
     })
+
+def view_pdf(request, nft_id):
+    nft = get_object_or_404(NFTCard, id=nft_id)
+    response = HttpResponse(nft.pdf, content_type='application/pdf')
+    response['Content-Disposition'] = 'inline;filename=nft-art.pdf'
+    return response
