@@ -61,6 +61,7 @@ def countdown_data(request):
         'end_date': countdown.end_date.isoformat()
     })
 
+
 def view_pdf(request, nft_id):
     nft = get_object_or_404(NFTCard, id=nft_id)
     response = HttpResponse(nft.pdf, content_type='application/pdf')
