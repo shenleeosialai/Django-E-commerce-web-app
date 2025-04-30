@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.log
+
+# Django
+*.sqlite3
+db.sqlite3
+media/
+staticfiles/
+.env
+.env.*
+
+# uWSGI
+*.pid
+*.sock
+
+# PostgreSQL data (don't version the database!)
+data/db/
+
+# IDEs
+.vscode/
+.idea/
+
+# Virtualenv
+venv/
+env/
+ENV/
+.venv/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Compiled translations
+*.mo
+
+# Coverage and testing
+.coverage
+htmlcov/
+.tox/
+.nox/
+.pytest_cache/
+
+# Migration files (optional)
+# You can uncomment the line below if you want to ignore all migrations
+# **/migrations/*.py
+# **/migrations/*.pyc
