@@ -5,13 +5,21 @@ upstream uwsgi_app {
 
 server {
     listen 80;
-    server_name www.oshenproject.com oshenproject.com;
-    error_log stderr warn;
-    access_log /dev/stdout main;
+    server_name  .www.oshenproject.com oshenproject.com;
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen               443 ssl;
+    ssl_certificate      /code/ssl/myshop.crt;
+    ssl_certificate_key  /code/ssl/myshop.key;
+    server_name  www.oshenproject.com oshenproject.com;
+    error_log    stderr warn;
+    access_log   /dev/stdout main;
 
     location / {
-    include /etc/nginx/uwsgi_params;
-    uwsgi_pass uwsgi_app;
+        include      /etc/nginx/uwsgi_params;
+        uwsgi_pass   uwsgi_app;
     }
 
     location /static/ {
