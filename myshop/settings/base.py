@@ -24,9 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'xiv%$br!y=#+0q(0!gf09xxz2v%+vws&fa)%mxo7n1)0)nxxq-'
 
-ALLOWED_HOSTS = ['*']
-
-
+ALLOWED_HOSTS = ['oshenproject.com www.oshenproject.com']
 
 # Application definition
 
@@ -66,7 +64,7 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 
 # Redis settings
-REDIS_HOST = 'localhost'
+REDIS_HOST = 'oshenproject.com www.oshenproject.com'
 REDIS_PORT = 6379
 REDIS_DB = 1
 
@@ -152,7 +150,7 @@ MPESA_API_BASE_URL = 'https://sandbox.safaricom.co.ke'  # or live URL
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.redis.RedisCache',
-        'LOCATION': 'redis://127.0.0.1:6379',
+        'LOCATION': 'redis://cache:6379/1',
     }
 }
 CACHE_MIDDLEWARE_ALIAS = 'default'
@@ -163,7 +161,7 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            'hosts': [('127.0.0.1', 6379)],
+            'hosts': [('cache', 6379)],
         },
     },
 }
