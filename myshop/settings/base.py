@@ -64,7 +64,7 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 
 # Redis settings
-REDIS_HOST = 'oshenproject.com www.oshenproject.com'
+REDIS_HOST = 'cache'
 REDIS_PORT = 6379
 REDIS_DB = 1
 
@@ -165,3 +165,5 @@ CHANNEL_LAYERS = {
         },
     },
 }
+
+CELERY_BROKER_URL = 'redis://cache:6379/0'
