@@ -17,7 +17,7 @@ class Command(BaseCommand):
             r.products_bought(bought)
 
         self.stdout.write(self.style.SUCCESS('Seeded recommendation data.'))
-        
-        
-# To avoid the "no recommendations yet" issue before real sales happen, 
+
+
+# To avoid the "no recommendations yet" issue before real sales happen,
 # i pre-seed Redis using dummy co-purchase data
