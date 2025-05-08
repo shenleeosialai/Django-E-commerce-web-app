@@ -61,35 +61,42 @@
     {% csrf_token %}
 
     <h2>Select Payment Method</h2>
-    <label>
-      <input type="radio" name="payment_method" value="stripe" checked>
-      Pay with Card (Stripe)
-    </label><br>
-    <label>
-      <input type="radio" name="payment_method" value="mpesa">
-      Pay with M-Pesa
-    </label><br><br>
-
-    <div id="mpesa-fields" style="display: none;">
+    <div id="payment-options" style="display: flex; gap: 20px;">
+      <div class="payment-option" data-method="stripe" style="cursor: pointer; text-align: center;">
+        <img src="{% static 'img/stripe logo.jpg' %}" alt="Stripe" width="100">
+        <p>Pay with Card</p>
+      </div>
+      <div class="payment-option" data-method="mpesa" style="cursor: pointer; text-align: center;">
+        <img src="{% static 'img/mpesa_logo.png' %}" alt="M-Pesa" width="100">
+        <p>Pay with M-Pesa</p>
+      </div>
+    </div>
+    
+    <input type="hidden" name="payment_method" id="payment-method" value="stripe">
+    
+    <div id="mpesa-fields" style="display: none; margin-top: 20px;">
       <label for="phone">Enter M-Pesa phone number:</label><br>
       <input type="tel" name="phone" placeholder="e.g. 254712345678"><br><br>
     </div>
-
+    
     <input type="submit" value="Pay now">
-  </form>
+    
 
-  <script>
-    const paymentRadios = document.querySelectorAll('input[name="payment_method"]');
-    const mpesaFields = document.getElementById('mpesa-fields');
-
-    paymentRadios.forEach(radio => {
-      radio.addEventListener('change', function () {
-        if (this.value === 'mpesa') {
-          mpesaFields.style.display = 'block';
-        } else {
-          mpesaFields.style.display = 'none';
-        }
+    <script>
+      const options = document.querySelectorAll('.payment-option');
+      const paymentMethodInput = document.getElementById('payment-method');
+      const mpesaFields = document.getElementById('mpesa-fields');
+    
+      options.forEach(option => {
+        option.addEventListener('click', () => {
+          options.forEach(opt => opt.classList.remove('selected'));
+          option.classList.add('selected');
+          const method = option.getAttribute('data-method');
+          paymentMethodInput.value = method;
+    
+          mpesaFields.style.display = method === 'mpesa' ? 'block' : 'none';
+        });
       });
-    });
-  </script>
+    </script>
+    
 {% endblock %}

@@ -416,38 +416,59 @@ ul.errorlist {
     color:#dc1616;
 }
 
-.recommendations {
-    clear:both;
+.recommendations-wrapper {
+  margin-top: 2rem;
+  overflow-x: hidden;
 }
 
-.recommendations div {
-    float:left;
+.recommendations-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
 }
 
-.recommendations img {
-    width:200px
+.recommendations-scroll {
+  display: flex;
+  overflow-x: auto;
+  gap: 1.5rem;
+  padding-bottom: 1rem;
+  scroll-snap-type: x mandatory;
 }
 
-.recommendations p {
-    clear:both;
+.recommendation-card {
+  flex: 0 0 auto;
+  width: 180px;
+  scroll-snap-align: start;
+  text-align: center;
 }
 
-.recommendations.cart {
-    width:60%;
-    float:left;
-    overflow:auto;
+.recommendation-card img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
 }
 
-.recommendations.cart h3 {
-    margin-top:0;
+.recommendation-card img:hover {
+  transform: scale(1.03);
 }
 
-.recommendations.cart .item {
-    margin-right:10px;
+.product-name {
+  margin: 0.5rem 0 0.2rem;
+  font-size: 0.95rem;
+  font-weight: 500;
 }
 
-.recommendations.cart img {
-    width:120px;
+.product-name a {
+  text-decoration: none;
+  color: #fffafa;
+}
+
+.product-price {
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: #fff8f8;
 }
 
 form div.field {
@@ -770,3 +791,121 @@ iframe {
 .scrolling-cont{
   padding: 27px 17px;
 }
+/* Overlay background */
+#couponPopup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* Popup container */
+#couponPopup .popup-content {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 255, 213, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #fff;
+  padding: 40px 30px;
+  text-align: center;
+  width: 90vw;
+  max-width: 500px;
+  animation: popupFadeIn 0.6s ease-out;
+  font-size: 1.2rem;
+  position: relative;
+}
+
+/* Close button */
+#couponPopup .close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 28px;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Headline */
+#couponPopup h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  text-shadow: 0 0 8px #00ffd5;
+}
+
+/* Message */
+#couponPopup p {
+  font-size: 1.3rem;
+  margin-bottom: 25px;
+}
+
+/* Copy button */
+#copyCode {
+  background: linear-gradient(135deg, #00ffd5, #00bfa6);
+  color: #000;
+  border: none;
+  border-radius: 12px;
+  padding: 14px 28px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 0 18px #00ffd5;
+}
+
+#copyCode:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px #00ffd5;
+}
+
+/* Fade-in animation */
+@keyframes popupFadeIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+/* Container for social icons */
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 24px; /* More space between icons */
+  margin-top: 30px; /* Extra space above */
+  padding: 10px 0; /* Vertical padding */
+  flex-wrap: wrap;
+}
+
+/* Individual social icon links */
+.social-links a {
+  font-size: 28px; /* Make icons a bit larger */
+  color: #00ffd5;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+}
+
+.social-links a:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 12px #00ffd5;
+}
+.payment-option.selected {
+  border: 2px solid #007bff;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: transparent;
+}
+
+.payment-option img {
+  display: block;
+  margin: 0 auto;
+}
+

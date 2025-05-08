@@ -11,3 +11,4 @@ DATABASES = {
         'PASSWORD': 'shenlee',
         }
 }
+# ALLOWED_HOSTS = ['*']
