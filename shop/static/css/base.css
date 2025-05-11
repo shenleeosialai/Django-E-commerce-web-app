@@ -125,7 +125,6 @@ ul.errorlist {
     font-size:18px;
     overflow:auto;
 }
-
 #subheader {
     background:#000000;
     color:#ffffff;
@@ -769,4 +768,12 @@ iframe {
 }
 .scrolling-cont{
   padding: 27px 17px;
+}
+/*top header*/
+
+.glow-text {
+  text-align: center;
+  color: rgb(255, 170, 0);
+  font-weight: small;
+  font-size: 30px;
 }
