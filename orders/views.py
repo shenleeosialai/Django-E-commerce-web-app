@@ -29,7 +29,8 @@ def order_create(request):
                 OrderItem.objects.create(order=order,
                                          product=item['product'],
                                          price=item['price'],
-                                         quantity=item['quantity'])
+                                         quantity=item['quantity'],
+                                         size=item['size'])
             cart.clear()
             # launch asynchronous task
             order_created.delay(order.id)

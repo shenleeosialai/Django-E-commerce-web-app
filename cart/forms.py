@@ -15,14 +15,13 @@ PRODUCT_QUANTITY_CHOICES = [(i, str(i)) for i in range(1, 21)]
 
 
 class CartAddProductForm(forms.Form):
-    quantity = forms.TypedChoiceField(choices=PRODUCT_QUANTITY_CHOICES,
-                                      coerce=int)
-    override = forms.BooleanField(required=False, initial=False,
-                                  widget=forms.HiddenInput)
-    size = forms.ChoiceField(choices=[], required=False)  # dynamic choices
+    quantity = forms.TypedChoiceField(choices=PRODUCT_QUANTITY_CHOICES, coerce=int)
+    override = forms.BooleanField(required=False, initial=False, widget=forms.HiddenInput)
+    size = forms.ChoiceField(choices=[], required=False)
 
     def __init__(self, *args, **kwargs):
         product = kwargs.pop('product', None)
+        size_value = kwargs.pop('size_value', None)  # Pre-fill size if passed
         super().__init__(*args, **kwargs)
         if product:
             if product.has_sizes:
@@ -32,4 +31,7 @@ class CartAddProductForm(forms.Form):
                 self.fields['size'].choices = SHOE_SIZE_CHOICES
                 self.fields['size'].required = True
             else:
-                del self.fields['size']
+                self.fields.pop('size')
+
+        if size_value:
+            self.initial['size'] = size_value

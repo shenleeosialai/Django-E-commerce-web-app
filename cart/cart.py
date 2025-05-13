@@ -2,6 +2,8 @@ from decimal import Decimal
 from django.conf import settings
 from shop.models import Product
 from coupons.models import Coupon
+from .forms import CartAddProductForm
+
 
 
 class Cart:
@@ -17,21 +19,27 @@ class Cart:
         self.cart = cart
         # store current applied coupon
         self.coupon_id = self.session.get('coupon_id')
-
+    
     def __iter__(self):
-        """
-        Iterate over the items in the cart and get the products
-        from the database.
-        """
         product_ids = self.cart.keys()
-        # get the product objects and add them to the cart
         products = Product.objects.filter(id__in=product_ids)
         cart = self.cart.copy()
         for product in products:
             cart[str(product.id)]['product'] = product
+
         for item in cart.values():
             item['price'] = Decimal(item['price'])
             item['total_price'] = item['price'] * item['quantity']
+            item['size'] = item.get('size', None)
+            item['update_quantity_form'] = CartAddProductForm(
+                initial={
+                    'quantity': item['quantity'],
+                    'override': True,
+                    'size': item['size'],
+                },
+                product=item['product'],
+                size_value=item['size']
+            )
             yield item
 
     def __len__(self):

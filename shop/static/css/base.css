@@ -81,7 +81,7 @@ table.cart img {
 }
 
 tbody td.num {
-    text-align:right;
+    text-align:center;
 }
 
 td input[type="submit"] {
@@ -118,7 +118,10 @@ ul.errorlist {
    margin:0 0 0 10px;
    padding:10px 0;
 }
-
+#mainheader{
+  text-align: center;
+  font-size: small;
+}
 
 #header {
     padding:0 26px;
@@ -773,7 +776,7 @@ iframe {
 
 .glow-text {
   text-align: center;
-  color: rgb(255, 170, 0);
+  color:#0fff;
   font-weight: small;
   font-size: 30px;
 }
