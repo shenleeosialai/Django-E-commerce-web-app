@@ -28,12 +28,8 @@ def user_login(request):
         form = LoginForm()
     return render(request, 'account/login.html', {'form': form})
 
-
-@login_required
-def dashboard(request):
-    return render(request,
-                  'account/dashboard.html',
-                  {'section': 'dashboard'})
+def home(request):
+    return render(request, 'shop/product/home.html')
 
 
 def register(request):
