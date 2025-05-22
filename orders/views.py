@@ -9,6 +9,11 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.template.loader import render_to_string
 import weasyprint
+from django.db.models import Q
+from django.utils.dateparse import parse_date
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+
 
 
 # Create your views here.
@@ -19,6 +24,11 @@ def order_create(request):
         if form.is_valid():
             order = form.save(commit=False)
             order.payment_status = 'PENDING'
+            order.status = 'processing'
+            if request.user.is_authenticated:
+                order.email = request.user.email
+
+
             if cart.coupon:
                 order.coupon = cart.coupon
                 order.discount = cart.coupon.discount
@@ -43,6 +53,35 @@ def order_create(request):
         form = OrderCreateForm()
     return render(request, 'orders/order/create.html',
                   {'form': form})
+
+def track_order(request):
+    order = None
+    if request.method == 'POST':
+        order_id = request.POST.get('order_id')
+        email = request.POST.get('email')
+        date_from = request.POST.get('date_from')
+        date_to = request.POST.get('date_to')
+
+        filters = Q(id=order_id, email=email)
+
+        if date_from:
+            filters &= Q(created__gte=parse_date(date_from))
+        if date_to:
+            filters &= Q(created__lte=parse_date(date_to))
+
+        order = Order.objects.filter(filters).first()
+        if not order:
+            messages.error(request, "Order not found. Please check your details.")
+
+    return render(request, 'orders/order/track.html', {'order': order})
+
+@login_required
+def order_history(request):
+    # Assuming your Order model has a user or email field to link orders to users
+    # If you link orders by email, you can filter by request.user.email
+    # Adjust according to your Order model
+    orders = Order.objects.filter(email=request.user.email).order_by('-created')
+    return render(request, 'orders/order/history.html', {'orders': orders})
 
 
 @staff_member_required

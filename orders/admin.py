@@ -78,5 +78,7 @@ class OrderAdmin(admin.ModelAdmin):
                     order_detail, order_pdf
                     ]
     list_filter = ['paid', 'created', 'updated']
+    list_display += ('status', 'shipping_tracking_number')
+    list_editable = ('status', 'shipping_tracking_number')
     inlines = [OrderItemInline]
     actions = [export_to_csv]

@@ -12,4 +12,7 @@ urlpatterns = [
     path('admin/order/<int:order_id>/pdf/',
          views.admin_order_pdf,
          name='admin_order_pdf'),
+     path('track/', views.track_order, name='track_order'),
+     path('history/', views.order_history, name='order_history'),
+
 ]

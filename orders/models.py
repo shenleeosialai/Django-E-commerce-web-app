@@ -30,6 +30,15 @@ class Order(models.Model):
     discount = models.IntegerField(default=0,
                                    validators=[MinValueValidator(0),
                                                MaxValueValidator(100)])
+    STATUS_CHOICES = [
+        ('processing', 'Processing'),
+        ('shipped', 'Shipped'),
+        ('in_transit', 'In Transit'),
+        ('delivered', 'Delivered'),
+        ('cancelled', 'Cancelled'),
+    ]
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='processing')
+    shipping_tracking_number = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
         ordering = ['-created']
