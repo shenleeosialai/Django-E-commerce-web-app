@@ -3,11 +3,15 @@
 {% block title %}Create an account{% endblock %}
 
 {% block content %}
+<div class="auth-container">
+  <div class="glass-card">
     <h1>Create an account</h1>
-    <p>Please, sign up using the following form:</p>
+    <p class="text-light">Please sign up using the form below:</p>
     <form method="post">
-        {{ user_form.as_p }}
-        {% csrf_token %}
-        <p><input type="submit" value="Create my account"></p>
+      {% csrf_token %}
+      {{ user_form.as_p }}
+      <input type="submit" value="Create my account" class="btn btn-success mt-2">
     </form>
+  </div>
+</div>
 {% endblock %}

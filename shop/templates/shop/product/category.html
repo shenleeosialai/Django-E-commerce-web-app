@@ -1,25 +1,104 @@
 {% extends "shop/base.html" %}
 {% load static %}
+
 {% block content %}
 
 <h1>{{ category.name }}</h1>
 
+{% load static %}
+
+<div class="container my-4">
+  <!-- Filter Button -->
+  <button class="btn btn-outline-primary d-flex align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#filterPanel" aria-expanded="false" aria-controls="filterPanel">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-funnel-fill me-2" viewBox="0 0 16 16">
+      <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .39.812l-5.59 7.836a.5.5 0 0 0-.11.274v3.578a.5.5 0 0 1-.805.4l-2.5-2a.5.5 0 0 1-.195-.4v-2.978a.5.5 0 0 0-.11-.274L1.11 2.812A.5.5 0 0 1 1.5 1.5z"/>
+    </svg>
+    Filters
+  </button>
+
+  <!-- Filter Panel -->
+  <div class="collapse mt-3" id="filterPanel">
+    <form method="get" class="row g-3">
+      <!-- Category Filter -->
+      <div class="col-md-4">
+        <label for="category" class="form-label fw-semibold">Category</label>
+        <select name="category" id="category" class="form-select">
+          <option value="">All Categories</option>
+          {% for c in categories %}
+          <option value="{{ c.slug }}" {% if selected_category == c.slug %}selected{% endif %}>{{ c.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <!-- Price Range -->
+      <div class="col-md-4">
+        <label class="form-label fw-semibold">Price Range</label>
+        <div class="d-flex gap-2">
+          <input type="number" name="min_price" class="form-control" placeholder="Min" value="{{ min_price|default_if_none:'' }}">
+          <input type="number" name="max_price" class="form-control" placeholder="Max" value="{{ max_price|default_if_none:'' }}">
+        </div>
+      </div>
+
+      <!-- Brand Filter (Example extra) -->
+      <div class="col-md-4">
+        <label for="brand" class="form-label fw-semibold">Brand</label>
+        <select name="brand" id="brand" class="form-select">
+          <option value="">All Brands</option>
+          {% for brand in brands %}
+          <option value="{{ brand }}" {% if selected_brand == brand %}selected{% endif %}>{{ brand }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <!-- Rating Filter -->
+      <div class="col-md-4">
+        <label for="rating" class="form-label fw-semibold">Minimum Rating</label>
+        <select name="rating" id="rating" class="form-select">
+          <option value="">Any</option>
+          {% for i in "54321" %}
+          <option value="{{ i }}" {% if selected_rating == i %}selected{% endif %}>{{ i }} Stars & Up</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <!-- Availability -->
+      <div class="col-md-4 d-flex align-items-end">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" name="in_stock" id="in_stock" value="1" {% if in_stock %}checked{% endif %}>
+          <label class="form-check-label" for="in_stock">
+            In Stock Only
+          </label>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary w-100">Apply Filters</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Your existing product grid unchanged BELOW -->
+
 <div class="product-grid">
   {% for product in products %}
-    <div class="product-card">
-      <a href="{{ product.get_absolute_url }}">
-        {% if product.image %}
-          <img src="{{ product.image.url }}" alt="{{ product.name }}">
-        {% else %}
-          <img src="{% static 'img/no_image.png' %}" alt="{{ product.name }}">
-        {% endif %}
-        <h3>{{ product.name }}</h3>
-      </a>
+  <div class="product-card">
+    <a href="{{ product.get_absolute_url }}">
+      {% if product.image %}
+      <img src="{{ product.image.url }}" alt="{{ product.name }}">
+      {% else %}
+      <img src="{% static 'img/no_image.png' %}" alt="{{ product.name }}">
+      {% endif %}
+      <h3>{{ product.name }}</h3>
       <p>${{ product.price }}</p>
-    </div>
+    </a>
+  </div>
   {% empty %}
-    <p>COMING SOON <span style="color: red; font-size: xx-large; text-size-adjust: bold;">!</span></p>
+  <p>COMING SOON <span style="color: red; font-size: xx-large; font-weight: bold;">!</span></p>
   {% endfor %}
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 {% endblock content %}

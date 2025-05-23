@@ -953,62 +953,57 @@ iframe {
   font-weight: small;
   font-size: 17px;
 }
-
-/*authentication css*/
-
-/* forms */
-form {
-    overflow:auto;
+/* authentication */
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url('/static/img/bg.jpg') no-repeat center center/cover;
+  padding: 2rem;
 }
 
-form p {
-    width:100%;
-    overflow:auto;
+.glass-card {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #fff;
+  animation: spin-in 0.7s ease-out;
+  transform-origin: center;
 }
 
-label {
-    float:left;
-    clear:both;
-    color:#333;
-    margin-bottom:4px;
+.glass-card h1 {
+  color: #fff;
+  text-align: center;
 }
-input, textarea {
-    clear:both;
-    float:left;
-    margin:0 0 10px;
-    background:#efefef;
-    border:0;
-    padding:6px 10px;
-    font-size:14px;
+
+.auth-container input, textarea {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.25);
+  color: #fff;
+  border: none;
+  border-radius: 0.375rem;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
 }
-input[type=submit], a.button {
-    font-weight:bold;
-    background:#12c064;
-    color:#fff;
-    padding:10px 20px;
-    font-size:14px;
-    text-transform:uppercase;
+
+input::placeholder {
+  color: #eee;
 }
-.errorlist {
-    color:#cc0033;
-    float:left;
-    clear:both;
-    padding-left:10px;
+
+.auth-container input[type="submit"] {
+  width: 100%;
+  background-color: #12c064;
+  border: none;
 }
-.helptext {
-    margin:0 0 20px 0;
-    color:#aaa;
-    clear:both;
-    float:left;
-    font-size:13px;
-}
-/* messages */
-ul.messages {
-    margin:10px 100px;
-    padding:0;
-    list-style-type:
-    none;
-}
+
+
 ul.messages li.success,
 ul.messages li.warning,
 ul.messages li.error,
@@ -1039,27 +1034,33 @@ ul.messages li a.close {
     box-shadow:none;
     text-shadow:none;
 }
-
-.login-form {
-    float:left;
+@keyframes spin-in {
+  0% {
+    transform: rotateY(-180deg) scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: rotateY(0deg) scale(1);
+    opacity: 1;
+  }
+}
+/* Button with bounce effect for global featured section */
+.bounce-btn {
+  animation: bounce 1.5s infinite;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  border-radius: 30px;
 }
 
-/* social-auth */
-.social {
-    float:right;
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0); 
+  }
+  40% {
+    transform: translateY(-10px); 
+  }
+  60% {
+    transform: translateY(-5px); 
+  }
 }
-.social li {
-    list-style:none;
-    padding:10px 20px;
-    margin:0 0 10px 0;
-}
-.social li a {
-    width:100%;
-    height:100%;
-    display:block;
-    color:#fff;
-}
-.social li.facebook { background:#3b5399; }
-.social li.twitter { background:#00cffa; }
-.social li.google { background:#de1710; }
 

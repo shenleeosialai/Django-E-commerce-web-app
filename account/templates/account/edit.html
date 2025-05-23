@@ -3,14 +3,19 @@
 {% block title %}Edit your account{% endblock %}
 
 {% block content %}
+<div class="auth-container">
+  <div class="glass-card">
     <h1>Edit your account</h1>
-        <p>You can edit your account using the following form:</p>
+    <p class="text-light">You can edit your account using the form below:</p>
     <form method="post" enctype="multipart/form-data">
-        {{ user_form.as_p }}
-        {{ profile_form.as_p }}
-        {% csrf_token %}
-        <p><input type="submit" value="Save changes"></p>
+      {% csrf_token %}
+      {{ user_form.as_p }}
+      {{ profile_form.as_p }}
+      <input type="submit" value="Save changes" class="btn btn-success mt-2">
     </form>
+  </div>
+</div>
 {% endblock %}
+
 <!--i have added enctype="multipart/form-data" to the <form> HTML element
 to enable file uploads-->

@@ -35,6 +35,8 @@ class Product(models.Model):
     updated = models.DateTimeField(auto_now=True)
     has_sizes = models.BooleanField(default=False)
     has_shoe_sizes = models.BooleanField(default=False)
+    featured = models.BooleanField(default=False)
+
 
     class Meta:
         ordering = ['name']
