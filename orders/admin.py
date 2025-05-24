@@ -72,13 +72,18 @@ order_pdf.short_description = 'Invoice'
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ['id', 'first_name', 'last_name', 'email',
-                    'address', 'postal_code', 'city', 'paid',
-                    order_payment, 'mpesa_code', 'created', 'updated',
-                    order_detail, order_pdf
-                    ]
-    list_filter = ['paid', 'created', 'updated']
-    list_display += ('status', 'shipping_tracking_number')
+    list_display = [
+        'id', 'first_name', 'last_name', 'email',
+        'address', 'postal_code', 'city', 'paid', 'paid_via',
+        order_payment, 'mpesa_code', 'is_cod', 'created', 'updated',
+        order_detail, order_pdf, 'status', 'shipping_tracking_number'
+    ]
+    list_filter = ['paid', 'created', 'updated', 'paid_via']
     list_editable = ('status', 'shipping_tracking_number')
     inlines = [OrderItemInline]
     actions = [export_to_csv]
+
+    def is_cod(self, obj):
+        return obj.paid_via == 'cod'
+    is_cod.boolean = True  # shows checkmark or cross
+    is_cod.short_description = 'Cash on Delivery'

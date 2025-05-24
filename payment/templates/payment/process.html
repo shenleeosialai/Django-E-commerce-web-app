@@ -4,99 +4,175 @@
 {% block title %}Pay your order{% endblock %}
 
 {% block content %}
-  <h1>Order summary</h1>
-  <table class="cart">
-    <thead>
-      <tr>
-        <th>Image</th>
-        <th>Product</th>
-        <th>Price</th>
-        <th>Quantity</th>
-        <th>Total</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for item in order.items.all %}
-        <tr class="row{% cycle "1" "2" %}">
-          <td>
-            <img src="{% if item.product.image %}{{ item.product.image.url }}
-            {% else %}{% static "img/no_image.png" %}{% endif %}">
-          </td>
-          <td>{{ item.product.name }}</td>
-          <td class="num">${{ item.price }}</td>
-          <td class="num">{{ item.quantity }}</td>
-          <td class="num">${{ item.get_cost }}</td>
-        </tr>
-      {% endfor %}
-      {% if order.coupon %}
-        <tr class="subtotal">
-          <td>Subtotal</td>
-          <td colspan="3"></td>
-          <td class="num">
-            ${{ order.get_total_cost_before_discount|floatformat:2 }}
-          </td>
-        </tr>
-        <tr>
-          <td>
-            "{{ order.coupon.code }}" coupon
-            ({{ order.discount }}% off)
-          </td>
-          <td colspan="3"></td>
-          <td class="num neg">
-            - ${{ order.get_discount|floatformat:2 }}
-          </td>
-        </tr>
-      {% endif %}
-      <tr class="total">
-        <td>Total</td>
-        <td colspan="3"></td>
-        <td class="num">
-          ${{ order.get_total_cost|floatformat:2 }}
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<style>
+  .payment-option.selected {
+    border-color: #007bff;
+    background-color: #e6f0ff;
+  }
 
-  <form action="{% url 'payment:process' %}" method="post" id="payment-form">
-    {% csrf_token %}
+  .payment-option:hover {
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+  }
 
-    <h2>Select Payment Method</h2>
-    <div id="payment-options" style="display: flex; gap: 20px;">
-      <div class="payment-option" data-method="stripe" style="cursor: pointer; text-align: center;">
-        <img src="{% static 'img/stripe logo.jpg' %}" alt="Stripe" width="100">
-        <p>Pay with Card</p>
-      </div>
-      <div class="payment-option" data-method="mpesa" style="cursor: pointer; text-align: center;">
-        <img src="{% static 'img/mpesa_logo.png' %}" alt="M-Pesa" width="100">
-        <p>Pay with M-Pesa</p>
-      </div>
+  .form-control {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  table {
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+  }
+
+  table th,
+  table td {
+    text-align: left;
+    font-size: 14px;
+    padding: 10px;
+    margin: 0;
+  }
+
+  tbody tr:nth-child(odd) {
+    background: #050A30;
+  }
+
+  tbody tr.subtotal {
+    background: #ccc;
+  }
+
+  thead th,
+  tbody tr.total {
+    background: #5993bb;
+    color: #fff;
+    font-weight: bold;
+  }
+
+  table.cart {
+    margin-bottom: 40px;
+  }
+
+  table.cart img {
+    width: 100px;
+    height: auto;
+  }
+
+  tbody td.num,
+  thead th.num {
+    text-align: right;
+  }
+
+  td input[type="submit"] {
+    font-size: 12px;
+    padding: 4px 10px;
+  }
+</style>
+
+<h1>Order summary</h1>
+<table class="cart">
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th>Product</th>
+      <th class="num">Price</th>
+      <th class="num">Quantity</th>
+      <th class="num">Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in order.items.all %}
+    <tr class="row{% cycle '1' '2' %}">
+      <td>
+        <img
+          src="{% if item.product.image %}{{ item.product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
+          alt="{{ item.product.name }}">
+      </td>
+      <td>{{ item.product.name }}</td>
+      <td class="num">${{ item.price }}</td>
+      <td class="num">{{ item.quantity }}</td>
+      <td class="num">${{ item.get_cost }}</td>
+    </tr>
+    {% endfor %}
+
+    {% if order.coupon %}
+    <tr class="subtotal">
+      <td>Subtotal</td>
+      <td colspan="3"></td>
+      <td class="num">${{ order.get_total_cost_before_discount|floatformat:2 }}</td>
+    </tr>
+    <tr>
+      <td>"{{ order.coupon.code }}" coupon ({{ order.discount }}% off)</td>
+      <td colspan="3"></td>
+      <td class="num neg">- ${{ order.get_discount|floatformat:2 }}</td>
+    </tr>
+    {% endif %}
+
+    <tr class="total">
+      <td>Total</td>
+      <td colspan="3"></td>
+      <td class="num">${{ order.get_total_cost|floatformat:2 }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<form action="{% url 'payment:process' %}" method="post" id="payment-form">
+  {% csrf_token %}
+
+  <h2>Select Payment Method</h2>
+  <div id="payment-options" style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+    <div class="payment-option" data-method="stripe"
+      style="cursor: pointer; text-align: center; border: 2px solid; border-radius: 10px; padding: 10px; width: 140px;">
+      <img src="{% static 'img/stripe logo.jpg' %}" alt="Stripe" width="100">
+      <p style="margin: 0;">Pay with Card</p>
     </div>
-    
-    <input type="hidden" name="payment_method" id="payment-method" value="stripe">
-    
-    <div id="mpesa-fields" style="display: none; margin-top: 20px;">
-      <label for="phone">Enter M-Pesa phone number:</label><br>
-      <input type="tel" name="phone" placeholder="e.g. 254712345678"><br><br>
+    <div class="payment-option" data-method="mpesa"
+      style="cursor: pointer; text-align: center; border: 2px solid; border-radius: 10px; padding: 10px; width: 140px;">
+      <img src="{% static 'img/mpesa_logo.png' %}" alt="M-Pesa" width="100">
+      <p style="margin: 0;">Pay with M-Pesa</p>
     </div>
-    
-    <input type="submit" value="Pay now">
-    
+    <div class="payment-option" data-method="cod"
+      style="cursor: pointer; text-align: center; border: 2px solid; border-radius: 10px; padding: 10px; width: 140px;">
+      <img src="{% static 'img/cash.png' %}" alt="Cash on Delivery" width="100">
+      <p style="margin: 0;">Pay on Delivery</p>
+    </div>
+  </div>
 
-    <script>
-      const options = document.querySelectorAll('.payment-option');
-      const paymentMethodInput = document.getElementById('payment-method');
-      const mpesaFields = document.getElementById('mpesa-fields');
-    
-      options.forEach(option => {
-        option.addEventListener('click', () => {
-          options.forEach(opt => opt.classList.remove('selected'));
-          option.classList.add('selected');
-          const method = option.getAttribute('data-method');
-          paymentMethodInput.value = method;
-    
-          mpesaFields.style.display = method === 'mpesa' ? 'block' : 'none';
-        });
-      });
-    </script>
-    
+  <input type="hidden" name="payment_method" id="payment-method">
+
+  <div id="mpesa-fields" style="display: none; margin-top: 15px; text-align: center;">
+    <label for="mpesa-phone">M-Pesa Phone Number</label>
+    <input type="text" id="mpesa-phone" name="mpesa_phone" class="form-control" placeholder="e.g. +254712345678"
+      style="max-width: 300px; margin: 10px auto;">
+  </div>
+
+  <div style="margin-top: 20px; text-align: center;">
+    <input type="submit" value="Pay now" class="btn btn-primary">
+  </div>
+</form>
+
+<script>
+  const options = document.querySelectorAll('.payment-option');
+  const paymentMethodInput = document.getElementById('payment-method');
+  const mpesaFields = document.getElementById('mpesa-fields');
+  const submitButton = document.querySelector('input[type="submit"]');
+
+  options.forEach(option => {
+    option.addEventListener('click', () => {
+      options.forEach(opt => opt.classList.remove('selected'));
+      option.classList.add('selected');
+      const method = option.getAttribute('data-method');
+      paymentMethodInput.value = method;
+
+      mpesaFields.style.display = method === 'mpesa' ? 'block' : 'none';
+
+      if (method === 'cod') {
+        submitButton.value = "Confirm Order";
+      } else {
+        submitButton.value = "Pay now";
+      }
+    });
+  });
+</script>
+
 {% endblock %}

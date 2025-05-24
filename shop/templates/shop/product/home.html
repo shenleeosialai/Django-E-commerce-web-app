@@ -584,34 +584,28 @@
   </script>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      // Always show the popup after 1 second
+  document.addEventListener("DOMContentLoaded", function () {
+    // Check if popup has already been shown in this session
+    if (!sessionStorage.getItem("couponPopupShown")) {
+      // Show the popup after 1 second
       setTimeout(() => {
         document.getElementById("couponPopup").style.display = "flex";
+        // Set flag to prevent future popups in this session
+        sessionStorage.setItem("couponPopupShown", "true");
       }, 1000);
-
-      document.getElementById("copyCode").onclick = function () {
-        navigator.clipboard.writeText("MOTHERS DAY");
-        this.textContent = "Copied!";
-        setTimeout(() => (this.textContent = "Copy Code"), 2000);
-      };
-    });
-
-    function closePopup() {
-      document.getElementById("couponPopup").style.display = "none";
     }
-  </script>
-  <script>
-    const toggleBtn = document.getElementById("toggleButton");
-    const content = document.getElementById("oshenMoreContent");
 
-    content.addEventListener("shown.bs.collapse", () => {
-      toggleBtn.textContent = "Show Less";
-    });
+    document.getElementById("copyCode").onclick = function () {
+      navigator.clipboard.writeText("MOTHERS DAY");
+      this.textContent = "Copied!";
+      setTimeout(() => (this.textContent = "Copy Code"), 2000);
+    };
+  });
 
-    content.addEventListener("hidden.bs.collapse", () => {
-      toggleBtn.textContent = "Show More";
-    });
-  </script>
+  function closePopup() {
+    document.getElementById("couponPopup").style.display = "none";
+  }
+</script>
+
 
   {% endblock %}

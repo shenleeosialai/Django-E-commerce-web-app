@@ -81,7 +81,9 @@ table.cart img {
 }
 
 tbody td.num {
-    text-align:center;
+    text-align:right;
+    white-space: nowrap;
+    min-width: 100px;
 }
 
 td input[type="submit"] {

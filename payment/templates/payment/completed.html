@@ -7,5 +7,7 @@
   <p>Your order has been processed successfully.</p>
   <p>Thank you for shopping with <strong style="color: red;">OSHEN</strong></p>
 
-  <a href="{% url 'shop:product_list' %}" class="btn btn-primary" style="margin-top: 20px;">Go back to Home Page</a>
+  <a href="{% url 'shop:home' %}" class="btn btn-primary" style="margin-top: 20px;">Go back to Home Page</a>
+  <a href="{% url 'orders:track_order' %}" class="btn btn-primary bounce-btn" style="margin-top: 20px;">Track your order</a>
+
 {% endblock %}

@@ -20,7 +20,7 @@ class Order(models.Model):
     download_link_sent = models.BooleanField(default=False)  # i removed this but was lazy to makemigrations
     mpesa_code = models.CharField(max_length=100, blank=True, null=True)
     paid_via = models.CharField(max_length=20, blank=True, null=True,
-                                choices=[('stripe', 'Stripe'), ('mpesa', 'M-Pesa')])
+                                choices=[('stripe', 'Stripe'), ('mpesa', 'M-Pesa'), ('cod', 'Cash on Delivery')])
     stripe_id = models.CharField(max_length=250, blank=True)
     coupon = models.ForeignKey(Coupon,
                                related_name='orders',

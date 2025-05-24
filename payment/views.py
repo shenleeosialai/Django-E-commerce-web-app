@@ -80,6 +80,17 @@ def payment_process(request):
             else:
                 messages.error(request, "M-Pesa payment initiation failed. Please try again.")
                 return redirect('payment:process')
+        elif payment_method == 'cod':
+            # Mark the order as pending payment and save
+            order.paid = False
+            order.paid_via = 'cod'
+            order.save()
+            
+            # You may want to notify the user
+            messages.success(request, "Order placed successfully! You will pay on delivery.")
+            
+            return redirect('payment:completed')
+
 
     return render(request, 'payment/process.html', locals())
 
