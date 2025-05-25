@@ -18,6 +18,8 @@ services:
     - ./data/cache:/data
 
   web:
+    env_file:
+      - .env
     build: .
     command: ["./wait-for-it.sh", "db:5432", "--",
               "uwsgi", "--ini", "/code/config/uwsgi/uwsgi.ini"]

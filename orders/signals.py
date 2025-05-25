@@ -10,10 +10,11 @@ from shop.recommender import Recommender
 def update_recommendations_on_order_save(sender, instance, created, **kwargs):
     # Only run after payment is marked complete
     if instance.paid:
-        products = [item.product for item in instance.items.all()]
-        if products:
-            recommender = Recommender()
-            recommender.products_bought(products)
+        if created or not Order.objects.filter(pk=instance.pk, paid=False).exists():
+            products = [item.product for item in instance.items.all()]
+            if products:
+                recommender = Recommender()
+                recommender.products_bought(products)
 
 @receiver(pre_save, sender=Order)
 def notify_status_change(sender, instance, **kwargs):

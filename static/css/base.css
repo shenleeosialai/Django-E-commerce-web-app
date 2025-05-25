@@ -45,6 +45,17 @@ a.button.light {
     text-align:right;
 }
 
+:root {
+  --sidebar-bg: #1a1a1a;
+  --primary: #e63946;
+  --accent: #a8dadc;
+}
+
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
 table {
     width:100%;
     border-spacing:0;
@@ -476,39 +487,83 @@ ul.errorlist {
     color:#dc1616;
 }
 
-.recommendations {
-    clear:both;
+.recommendations-wrapper {
+  padding: 1rem;
+  background: #000000;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-.recommendations div {
-    float:left;
+.recommendations-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  padding-left: 0.5rem;
 }
 
-.recommendations img {
-    width:200px
+.recommendations-scroll {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 1rem;
 }
 
-.recommendations p {
-    clear:both;
+.recommendations-scroll::-webkit-scrollbar {
+  height: 8px;
 }
 
-.recommendations.cart {
-    width:60%;
-    float:left;
-    overflow:auto;
+.recommendations-scroll::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 10px;
 }
 
-.recommendations.cart h3 {
-    margin-top:0;
+.recommendation-card {
+  flex: 0 0 auto;
+  width: 180px;
+  scroll-snap-align: start;
+  background: #000000;
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 0.75rem;
+  text-align: center;
+  transition: transform 0.3s ease;
 }
 
-.recommendations.cart .item {
-    margin-right:10px;
+.recommendation-card:hover {
+  transform: translateY(-5px);
 }
 
-.recommendations.cart img {
-    width:120px;
+.recommendation-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
 }
+
+.product-name {
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0.5rem 0 0.25rem;
+  color: #ffffff;
+}
+
+.product-name a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.product-name a:hover {
+  color: #007bff;
+}
+
+.product-price {
+  color: #28a745;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
 
 form div.field {
     font-size:13px;
@@ -518,7 +573,7 @@ form div.field {
     margin-bottom:10px;
     padding:6px 12px;
     border:0;
-    background:#efefef;
+    background:#000000;
     color:#666;
     border-radius:4px;
 }
@@ -1063,5 +1118,149 @@ ul.messages li a.close {
   60% {
     transform: translateY(-5px); 
   }
+}
+
+/* Base dark theme for all Jazzmin admin pages */
+body.jazzmin,
+body.jazzmin .wrapper,
+body.jazzmin .content-wrapper,
+body.jazzmin .content,
+body.jazzmin .main-footer,
+body.jazzmin .main-header {
+    background-color: #000000 !important;
+    color: #f5f5f5 !important;
+}
+/* Header text and icons */
+body.jazzmin .main-header,
+body.jazzmin .main-header .nav-link,
+body.jazzmin .main-header .navbar-nav > .nav-item > .nav-link {
+    color: #f5f5f5 !important;
+}
+/* Card header fix (removes blue tint) */
+body.jazzmin .card-header {
+    background: rgba(255, 255, 255, 0.05) !important;
+    color: #f5f5f5 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+/* Make sure all text in cards is light */
+body.jazzmin .card-body,
+body.jazzmin .card-footer {
+    color: #e95757 !important;
+}
+/* Make links more readable on dark background */
+body.jazzmin a {
+    color: #cbb9b9 !important; /* Light blue */
+    text-decoration: none;
+}
+
+body.jazzmin a:hover {
+    color: #ffffff !important;
+    text-decoration: underline;
+}
+
+/* Specifically inside cards */
+body.jazzmin .card a {
+    color: #1200b9 !important;
+}
+
+body.jazzmin .card a:hover {
+    color: #ffffff !important;
+}
+
+/* Sidebar */
+body.jazzmin .main-sidebar {
+    background-color: #111 !important;
+    border-right: 1px solid #222;
+}
+
+/* Cards */
+body.jazzmin .card {
+    background: rgba(255, 255, 255, 0.05) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    color: #ffffff;
+}
+
+/* Buttons */
+body.jazzmin .btn-primary {
+    background-color: #1f8ef1;
+    border-color: #1f8ef1;
+    border-radius: 8px;
+    transition: 0.3s ease;
+}
+body.jazzmin .btn-primary:hover {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+/* Inputs and forms */
+body.jazzmin input,
+body.jazzmin select,
+body.jazzmin textarea {
+    background-color: #111 !important;
+    border: 1px solid #333 !important;
+    color: #fff !important;
+    border-radius: 8px;
+}
+
+/* Top nav bar */
+body.jazzmin .main-header {
+    background-color: #111 !important;
+    border-bottom: 1px solid #222;
+}
+
+/* Sidebar nav links */
+body.jazzmin .nav-sidebar .nav-link {
+    color: #ccc !important;
+}
+/* Style the hamburger menu (sidebar toggle) */
+body.jazzmin .main-header .nav-link[data-widget="pushmenu"] i {
+    color: #1f8ef1 !important; /* Your blue shade */
+    font-size: 1.25rem;
+    transition: color 0.3s ease;
+}
+body.jazzmin .nav-sidebar .nav-link.active {
+    background-color: #000000 !important;
+    color: white !important;
+    border-radius: 8px;
+}
+/* Table data cells */
+body.jazzmin .card td {
+    background-color: #0000 !important;
+    color: #f0f0f0 !important;
+    border-color: #333 !important;
+}
+
+/* Full table */
+body.jazzmin .card table {
+    border-collapse: collapse;
+    border: 1px solid #333 !important;
+}
+/* Full black background for all card sections */
+body.jazzmin .card,
+body.jazzmin .card-header,
+body.jazzmin .card-body,
+body.jazzmin .card-footer {
+    background-color: #000000 !important;
+    color: #f5f5f5 !important;
+    border-color: #333 !important;
+}
+body.jazzmin .card-header {
+    background-image: none !important;
+    box-shadow: none !important;
+}
+/* Override global table header background color inside Jazzmin */
+body.jazzmin .card .table thead th {
+    background-color: #000000 !important;
+    color: #f5f5f5 !important;
+    border-color: #333 !important;
+}
+
+/* Optional: table body styling for consistency */
+body.jazzmin .card .table tbody td {
+    background-color: #000000 !important;
+    color: #f5f5f5 !important;
+    border-color: #333 !important;
 }
 
