@@ -1,5 +1,7 @@
+_![diagram](https://github.com/user-attachments/assets/7b045456-aa67-4eff-8bb1-28cd6ac07f6a)
 # OSHEN COMICS  
-_Your One-Stop Comic Book & Merchandise Store_
+_Your One-Stop Comic Book & Merchandise Store
+
 
 OSHEN COMICS is a feature-rich e-commerce platform designed for comic book fans. It allows users to browse, shop, and pay for comic books and related merchandise using M-Pesa and Stripe payment methods. It supports intelligent product recommendations, promotional tools like coupon codes and countdown deals, and efficient cart handling with Redis-backed sessions.
 
