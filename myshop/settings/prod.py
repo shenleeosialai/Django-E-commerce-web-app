@@ -1,13 +1,13 @@
 import os
 from .base import *
 
-DEBUG = True
+DEBUG = False
 
 ADMINS = [
     ('shen', 'shenleekhalid@gmail.com'),
 ]
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['oshencomics.store', 'www.oshencomics.store']
 
 DATABASES = {
     'default': {
