@@ -15,5 +15,6 @@ RUN pip install -r requirements.txt
 
 # Copy the Django project
 COPY . /code/
-COPY wait-for-it.sh /app/wait-for-it.sh
-RUN chmod +x /app/wait-for-it.sh
+COPY wait-for-it.sh /code/wait-for-it.sh
+RUN chmod +x /code/wait-for-it.sh
+

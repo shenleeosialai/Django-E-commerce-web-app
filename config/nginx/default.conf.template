@@ -12,11 +12,11 @@ server {
 
 server {
     listen               443 ssl;
-    ssl_certificate      /code/ssl/myshop.crt;
-    ssl_certificate_key  /code/ssl/myshop.key;
+    ssl_certificate      /etc/letsencrypt/live/oshencomics.store/fullchain.pem;
+    ssl_certificate_key  /etc/letsencrypt/live/oshencomics.store/privkey.pem;
     server_name  www.oshencomics.store oshencomics.store;
     client_max_body_size 200M;
-    error_log    stderr warn;
+    error_log    /dev/stderr warn;
     access_log   /dev/stdout main;
 
     location / {

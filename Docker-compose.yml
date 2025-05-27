@@ -21,7 +21,7 @@ services:
     env_file:
       - .env
     build: .
-    command: ["./wait-for-it.sh", "db:5432", "--",
+    command: ["/code/wait-for-it.sh", "db:5432", "--",
               "uwsgi", "--ini", "/code/config/uwsgi/uwsgi.ini"]
     restart: always
     volumes:
@@ -41,9 +41,11 @@ services:
       - ./config/nginx:/etc/nginx/templates
       - .:/code
       - ./ssl:/code/ssl
+      - ./certs:/etc/letsencrypt/live:ro    # <-- Add this line
     ports:
       - "80:80"
       - "443:443"
+
 
   celery:
     build: .
