@@ -18,8 +18,10 @@ class ProductAdmin(admin.ModelAdmin):
                     'has_sizes', 'has_shoe_sizes', 'featured')
     list_filter = ('available', 'created', 'updated', 'has_sizes',
                    'has_shoe_sizes', 'featured')
-    list_editable = ('price', 'available', 'has_sizes', 'has_shoe_sizes', 'featured')
+    list_editable = ('price', 'available', 'has_sizes', 'has_shoe_sizes',
+                     'featured')
     prepopulated_fields = {'slug': ('name',)}
+
 
 admin.site.register(Countdown)
 

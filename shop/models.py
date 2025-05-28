@@ -24,7 +24,8 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, related_name='products',
+                                 on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
     slug = models.CharField(max_length=200)
     image = models.ImageField(upload_to='product/%Y/%m/%d', blank=True)
@@ -36,7 +37,6 @@ class Product(models.Model):
     has_sizes = models.BooleanField(default=False)
     has_shoe_sizes = models.BooleanField(default=False)
     featured = models.BooleanField(default=False)
-
 
     class Meta:
         ordering = ['name']
