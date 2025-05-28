@@ -10,13 +10,15 @@ def home(request):
     categories = Category.objects.all()
 
     # All globally featured products (marked as featured=True)
-    global_featured_products = Product.objects.filter(featured=True, available=True)[:6]
+    global_featured_products = Product.objects.filter(featured=True,
+                                                      available=True)[:6]
 
     # Category-specific featured sections
     featured_sections = []
     featured_categories = Category.objects.filter(featured=True)
     for c in featured_categories:
-        featured_products = Product.objects.filter(category=c, available=True)[:3]
+        featured_products = Product.objects.filter(category=c,
+                                                   available=True)[:3]
         if featured_products:
             featured_sections.append({
                 'category': c,
@@ -67,13 +69,12 @@ def product_list(request, category_slug=None):
     })
 
 
-
 # Product Detail View
 def product_detail(request, id, slug):
     product = get_object_or_404(Product, id=id, slug=slug, available=True)
     cart_product_form = CartAddProductForm(product=product)
     r = Recommender()
-    recommended_products = r.suggest_products_for([product], 4)
+    recommended_products = r.suggest_products_for([product], 8)
 
     return render(request, 'shop/product/detail.html', {
         'product': product,
