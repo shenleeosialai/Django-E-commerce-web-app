@@ -2,53 +2,55 @@
 {% load static %}
 
 {% block title %}
-  {{ product.name }}
+{{ product.name }}
 {% endblock %}
 
 {% block content %}
-  <div class="product-detail">
-    <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
-    <h1>{{ product.name }}</h1>
-    <h2>
-      <a href="{{ product.category.get_absolute_url }}">
-        {{ product.category }}
-      </a>
-    </h2>
-    <p class="price">${{ product.price }}</p>
-    <form action="{% url "cart:cart_add" product.id %}" method="post">
-      {% csrf_token %}
-      {{ cart_product_form.quantity.label_tag }} {{ cart_product_form.quantity }}
-      {% if cart_product_form.fields.size %}
-        {{ cart_product_form.size.label_tag }} {{ cart_product_form.size }}
-      {% endif %}
-      <input type="submit" value="Add to cart">
-    </form>
-    {{ product.description|linebreaks }}
-
-    {% if recommended_products %}
-    <div class="recommendations-wrapper my-5">
-      <h3 class="recommendations-title">You might also like</h3>
-      <div class="recommendations-scroll">
-        {% for p in recommended_products %}
-        <div class="recommendation-card">
-          <a href="{{ p.get_absolute_url }}">
-            <img src="{% if p.image %}{{ p.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}" alt="{{ p.name }}">
-          </a>
-          <p class="product-name"><a href="{{ p.get_absolute_url }}">{{ p.name }}</a></p>
-          <p class="product-price">from ${{ p.price }}</p>
-        </div>
-        {% endfor %}
-      </div>
-    </div>
+<div class="product-detail">
+  <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static " img/no_image.png" %}{% endif %}">
+  <h1>{{ product.name }}</h1>
+  <h2>
+    <a href="{{ product.category.get_absolute_url }}">
+      {{ product.category }}
+    </a>
+  </h2>
+  <p class="price">${{ product.price }}</p>
+  <form action="{% url " cart:cart_add" product.id %}" method="post">
+    {% csrf_token %}
+    {{ cart_product_form.quantity.label_tag }} {{ cart_product_form.quantity }}
+    {% if cart_product_form.fields.size %}
+    {{ cart_product_form.size.label_tag }} {{ cart_product_form.size }}
     {% endif %}
-  </div>
+    <input type="submit" value="Add to cart">
+  </form>
+  {{ product.description|linebreaks }}
 
-  <!-- Footer -->
-  <footer style="background-color: #1a1a1a;" class="text-light pt-5 pb-4 px-3 rounded-top-5 shadow-lg mt-5">
+  {% if recommended_products %}
+  <div class="recommendations-wrapper my-5">
+    <h3 class="recommendations-title">You might also like</h3>
+    <div class="recommendations-scroll">
+      {% for p in recommended_products %}
+      <div class="recommendation-card">
+        <a href="{{ p.get_absolute_url }}">
+          <img src="{% if p.image %}{{ p.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}"
+            alt="{{ p.name }}">
+        </a>
+        <p class="product-name"><a href="{{ p.get_absolute_url }}">{{ p.name }}</a></p>
+        <p class="product-price">from ${{ p.price }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+</div>
+
+<!-- Footer -->
+<footer style="background-color: #1a1a1a;" class="text-light pt-5 pb-4 px-3 rounded-top-5 shadow-lg mt-5">
   <div class="container">
     <h2 class="fw-bold mb-4">
       Dive Into Worlds Beyond<br />
-      <span class="fw-normal text-secondary">Comics & Merch for Every <strong class="text-white">True Fan.</strong></span>
+      <span class="fw-normal text-secondary">Comics & Merch for Every <strong class="text-white">True
+          Fan.</strong></span>
     </h2>
 
     <hr class="border-secondary mb-5" />
@@ -63,7 +65,8 @@
         <h6 class="fw-semibold">Support</h6>
         <ul class="list-unstyled">
           <li><a href="https://wa.me/254741881921" class="text-secondary text-decoration-none">Contact Support</a></li>
-          <li><a href="{% url 'orders:order_history' %}" class="text-secondary text-decoration-none">Shipping Info</a></li>
+          <li><a href="{% url 'orders:order_history' %}" class="text-secondary text-decoration-none">Shipping Info</a>
+          </li>
           <li><a href="#" class="text-secondary text-decoration-none">Privacy Policy</a></li>
           <li><a href="#" class="text-secondary text-decoration-none">Terms of Service</a></li>
         </ul>
@@ -72,17 +75,10 @@
       <div class="col-md-2">
         <h6 class="fw-semibold">Stay in the Loop</h6>
         <form class="d-flex mt-2 flex-column flex-sm-row" style="gap: 0.5rem;">
-          <input
-            type="email"
-            class="form-control bg-dark text-white border-secondary flex-grow-1"
-            placeholder="Enter your E-mail"
-            style="font-size: 1.25rem; padding: 0.75rem 1rem;"
-          />
-          <button
-            class="btn btn-outline-info px-4"
-            type="submit"
-            style="font-size: 1.25rem; white-space: nowrap;"
-          >
+          <input type="email" class="form-control bg-dark text-white border-secondary flex-grow-1"
+            placeholder="Enter your E-mail" style="font-size: 1.25rem; padding: 0.75rem 1rem; min-width: 300px;" />
+
+          <button class="btn btn-outline-info px-4" type="submit" style="font-size: 1.25rem; white-space: nowrap;">
             Subscribe
           </button>
         </form>
@@ -96,13 +92,18 @@
       <p class="mb-0 small text-decoration-none">OSHEN COMICS 2025 ©. All rights reserved</p>
       <div class="d-flex align-items-center mt-2 mt-md-0">
         <!-- Social icons -->
-        <a href="https://www.instagram.com/_.shenlee?igsh=a3B0cnh1d2pqenp2&utm_source=qr" class="text-light me-3"><i class="bi bi-instagram"></i></a>
-        <a href="https://www.linkedin.com/in/shen-lee-osialai-089403251/" class="text-light me-4"><i class="bi bi-linkedin"></i></a>
+        <a href="https://www.instagram.com/_.shenlee?igsh=a3B0cnh1d2pqenp2&utm_source=qr" class="text-light me-3"><i
+            class="bi bi-instagram"></i></a>
+        <a href="https://www.linkedin.com/in/shen-lee-osialai-089403251/" class="text-light me-4"><i
+            class="bi bi-linkedin"></i></a>
 
         <!-- Payment icons -->
-        <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Stripe_Logo%2C_revised_2016.svg" alt="Stripe" style="height:32px; margin-right: 15px;" />
-        <img src="https://upload.wikimedia.org/wikipedia/commons/1/15/M-PESA_LOGO-01.svg" alt="M-Pesa" style="height:32px;" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Stripe_Logo%2C_revised_2016.svg" alt="Stripe"
+          style="height:32px; margin-right: 15px;" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/15/M-PESA_LOGO-01.svg" alt="M-Pesa"
+          style="height:32px;" />
       </div>
     </div>
   </div>
 </footer>
+{% endblock %}
