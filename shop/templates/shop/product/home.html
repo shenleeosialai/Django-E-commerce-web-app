@@ -337,75 +337,69 @@
   </div>
 
 
-  <footer style="background-color: #1a1a1a;" class="text-light pt-5 pb-4 px-3 rounded-top-5 shadow-lg mt-5">
-    <div class="container">
-      <h2 class="fw-bold mb-4" style="font-size: 1.8rem;">
-        Dive Into Worlds Beyond<br />
-        <span class="fw-normal text-secondary" style="font-size: 1.1rem;">
-          Comics & Merch for Every <strong class="text-white">True Fan.</strong>
-        </span>
-      </h2>
+<footer style="background-color: #1a1a1a;" class="text-light pt-5 pb-4 px-3 rounded-top-5 shadow-lg mt-5">
+  <div class="container">
+    <h2 class="fw-bold mb-4">
+      Dive Into Worlds Beyond<br />
+      <span class="fw-normal text-secondary">Comics & Merch for Every <strong class="text-white">True Fan.</strong></span>
+    </h2>
 
-      <hr class="border-secondary mb-5" />
+    <hr class="border-secondary mb-5" />
 
-      <div class="row">
-        <div class="col-md-3 mb-4">
-          <h5 class="fw-bold" style="font-size: 1.3rem;">OSHEN COMICS</h5>
-          <p class="text-secondary" style="font-size: 1rem;">Explore original stories, characters, and official
-            merchandise.</p>
-        </div>
-
-        <div class="col-md-3 mb-4">
-          <h6 class="fw-semibold" style="font-size: 1.2rem;">Support</h6>
-          <ul class="list-unstyled" style="font-size: 1rem;">
-            <li><a href="https://wa.me/254741881921" class="text-secondary text-decoration-none">Contact Support</a>
-            </li>
-            <li><a href="{% url 'orders:order_history' %}" class="text-secondary text-decoration-none">Shipping Info</a>
-            </li>
-            <li><a href="#" class="text-secondary text-decoration-none">Privacy Policy</a></li>
-            <li><a href="#" class="text-secondary text-decoration-none">Terms of Service</a></li>
-          </ul>
-        </div>
-
-        <div class="col-md-2">
-          <h6 class="fw-semibold" style="font-size: 1.2rem;">Stay in the Loop</h6>
-          <form class="d-flex mt-2 flex-column flex-sm-row" style="gap: 0.5rem;">
-            <input type="email" class="form-control bg-dark text-white border-secondary" placeholder="Enter your E-mail"
-              style="font-size: 1.25rem; min-height: 56px; padding: 0.75rem 1rem; width: 100%;" />
-            <button class="btn btn-outline-info px-4" type="submit"
-              style="font-size: 1.25rem; min-height: 56px; width: 100%;">
-              Subscribe
-            </button>
-          </form>
-
-          <small class="text-secondary d-block mt-2" style="font-size: 0.9rem;">Get notified about new comic drops &
-            exclusive merch.</small>
-        </div>
+    <div class="row g-4">
+      <div class="col-md-3 mb-4">
+        <h5 class="fw-bold">OSHEN COMICS</h5>
+        <p class="text-secondary">Explore original stories, characters, and official merchandise.</p>
       </div>
 
-      <hr class="border-secondary my-4" />
+      <div class="col-md-3 mb-4">
+        <h6 class="fw-semibold">Support</h6>
+        <ul class="list-unstyled">
+          <li><a href="https://wa.me/254741881921" class="text-secondary text-decoration-none">Contact Support</a></li>
+          <li><a href="{% url 'orders:order_history' %}" class="text-secondary text-decoration-none">Shipping Info</a></li>
+          <li><a href="#" class="text-secondary text-decoration-none">Privacy Policy</a></li>
+          <li><a href="#" class="text-secondary text-decoration-none">Terms of Service</a></li>
+        </ul>
+      </div>
 
-      <div class="d-flex justify-content-between align-items-center pt-2 flex-wrap">
-        <p class="mb-0 small text-decoration-none" style="font-size: 0.9rem;">OSHEN COMICS 2025 ©. All rights reserved
-        </p>
-        <div class="d-flex align-items-center mt-2 mt-md-0" style="gap: 1rem; font-size: 1.5rem;">
-          <!-- Social icons -->
-          <a href="https://www.instagram.com/_.shenlee?igsh=a3B0cnh1d2pqenp2&utm_source=qr" class="text-light">
-            <i class="bi bi-instagram"></i>
-          </a>
-          <a href="https://www.linkedin.com/in/shen-lee-osialai-089403251/" class="text-light">
-            <i class="bi bi-linkedin"></i>
-          </a>
-
-          <!-- Payment icons -->
-          <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Stripe_Logo%2C_revised_2016.svg" alt="Stripe"
-            style="height: 36px; margin-left: 10px;" class="img-fluid" />
-          <img src="https://upload.wikimedia.org/wikipedia/commons/1/15/M-PESA_LOGO-01.svg" alt="M-Pesa"
-            style="height: 36px; margin-left: 10px;" class="img-fluid" />
-        </div>
+      <div class="col-md-2">
+        <h6 class="fw-semibold">Stay in the Loop</h6>
+        <form class="d-flex mt-2 flex-column flex-sm-row" style="gap: 0.5rem;">
+          <input
+            type="email"
+            class="form-control bg-dark text-white border-secondary flex-grow-1"
+            placeholder="Enter your E-mail"
+            style="font-size: 1.25rem; padding: 0.75rem 1rem;"
+          />
+          <button
+            class="btn btn-outline-info px-4"
+            type="submit"
+            style="font-size: 1.25rem; white-space: nowrap;"
+          >
+            Subscribe
+          </button>
+        </form>
+        <small class="text-secondary d-block mt-2">Get notified about new comic drops & exclusive merch.</small>
       </div>
     </div>
-  </footer>
+
+    <hr class="border-secondary my-4" />
+
+    <div class="d-flex justify-content-between align-items-center pt-2 flex-wrap">
+      <p class="mb-0 small text-decoration-none">OSHEN COMICS 2025 ©. All rights reserved</p>
+      <div class="d-flex align-items-center mt-2 mt-md-0">
+        <!-- Social icons -->
+        <a href="https://www.instagram.com/_.shenlee?igsh=a3B0cnh1d2pqenp2&utm_source=qr" class="text-light me-3"><i class="bi bi-instagram"></i></a>
+        <a href="https://www.linkedin.com/in/shen-lee-osialai-089403251/" class="text-light me-4"><i class="bi bi-linkedin"></i></a>
+
+        <!-- Payment icons -->
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Stripe_Logo%2C_revised_2016.svg" alt="Stripe" style="height:32px; margin-right: 15px;" />
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/15/M-PESA_LOGO-01.svg" alt="M-Pesa" style="height:32px;" />
+      </div>
+    </div>
+  </div>
+</footer>
+
 
 
 
