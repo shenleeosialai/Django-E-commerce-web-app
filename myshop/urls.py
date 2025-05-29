@@ -27,8 +27,6 @@ sitemaps = {
 
 urlpatterns = [
     path('secret-portal-49u2a2j/', admin.site.urls),
-    path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
-         name='django.contrib.sitemaps.views.sitemap'),
     path('cart/', include('cart.urls', namespace='cart')),
     path('orders/', include('orders.urls', namespace='orders')),
     path('payment/', include('payment.urls', namespace='payment')),
@@ -36,6 +34,8 @@ urlpatterns = [
     path('account/', include('account.urls')),
     path('social-auth/', include('social_django.urls',
                                  namespace='social')),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
+         name='django.contrib.sitemaps.views.sitemap'),
     path('', include('shop.urls', namespace='shop')),
 ]
 
