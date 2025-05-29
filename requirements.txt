@@ -14,4 +14,3 @@ daphne==4.0.0
 social-auth-app-django==5.4.0
 django-jazzmin
 python-dotenv>=1.0.0
-
