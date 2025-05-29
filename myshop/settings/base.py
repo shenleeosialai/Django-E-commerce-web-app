@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'coupons.apps.CouponsConfig',
     'account.apps.AccountConfig',
     'localflavor',
+    'django.contrib.sitemaps',
 ]
 
 MIDDLEWARE = [
