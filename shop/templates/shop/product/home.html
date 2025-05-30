@@ -56,41 +56,45 @@
   </button>
 </div>
 
-<!-- Header Section with Background Image -->
-<div class="banner-section text-white d-flex align-items-center">
-  <div class="container py-5">
+<!-- Preload the Unsplash image early in <head> -->
+<link rel="preload" as="image"
+      href="https://images.unsplash.com/flagged/photo-1587096472434-8b65b343980d?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      fetchpriority="high">
+
+<!-- Optimized Banner Section -->
+<div class="banner-section position-relative text-white d-flex align-items-center justify-content-center" style="min-height: 100vh; overflow: hidden;">
+  <!-- Hero image replaces CSS background-image -->
+  <img src="https://images.unsplash.com/flagged/photo-1587096472434-8b65b343980d?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+       alt="Oshen Flash Sale Background" 
+       class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover z-n1"
+       loading="eager" decoding="async" fetchpriority="high">
+
+  <div class="container py-5 position-relative z-1">
     <div class="row align-items-center">
       <div class="col-md-6 text-center text-md-start">
         <div class="d-flex align-items-center mb-3 justify-content-center justify-content-md-start">
           <div class="user-avatar me-2"></div>
-          <span> oshen flash sale⚡</span>
+          <span>oshen flash sale⚡</span>
         </div>
-        <h1 class="display-4 fw-bold">Mothers day discount,shop while products are 80% off</h1>
-        <small class="text-uppercase text-red d-block mb-2">use code "MOTHERS DAY" to get discount</small>
-        <a href="{% url 'shop:product_list' %}" class="btn btn-light mt-3 px-4 py-2">shop now~></a>
+        <h1 class="display-4 fw-bold">Mothers Day Discount — Shop while products are 80% off</h1>
+        <small class="text-uppercase text-red d-block mb-2">Use code <strong>"MOTHERS DAY"</strong> to get discount</small>
+        <a href="{% url 'shop:product_list' %}" class="btn btn-light mt-3 px-4 py-2">Shop now →</a>
       </div>
       <div class="col-md-6 text-center text-md-end mt-4 mt-md-0">
-        <div id="countdown-wrapper" class="timer-box p-3 rounded">
+        <div id="countdown-wrapper" class="timer-box p-3 rounded bg-dark bg-opacity-75">
           <small class="text-uppercase text-red d-block mb-2">Flash ends in:</small>
           <div class="d-flex justify-content-center gap-4" id="countdown">
-            <div>
-              <h3 class="mb-0" id="days">00</h3><small class="text-red">Days</small>
-            </div>
-            <div>
-              <h3 class="mb-0" id="hours">00</h3><small class="text-red">Hours</small>
-            </div>
-            <div>
-              <h3 class="mb-0" id="minutes">00</h3><small class="text-red">Minutes</small>
-            </div>
-            <div>
-              <h3 class="mb-0" id="seconds">00</h3><small class="text-red">Seconds</small>
-            </div>
+            <div><h3 class="mb-0" id="days">00</h3><small class="text-red">Days</small></div>
+            <div><h3 class="mb-0" id="hours">00</h3><small class="text-red">Hours</small></div>
+            <div><h3 class="mb-0" id="minutes">00</h3><small class="text-red">Minutes</small></div>
+            <div><h3 class="mb-0" id="seconds">00</h3><small class="text-red">Seconds</small></div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
 
 <div class="featured-section">
   <div class="product-grid">
