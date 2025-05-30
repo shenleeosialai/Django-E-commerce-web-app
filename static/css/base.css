@@ -8,7 +8,7 @@ body {
     color:#ffffff;
     width: 100vw;
     height: 100vh;
-    font-size: 16px;
+    font-size: larger;
 }
 
 h1, h2, h3, h4, h5 , h6 {
@@ -1010,7 +1010,7 @@ iframe {
   text-align: center;
   color:#0fff;
   font-weight: small;
-  font-size: 32px;
+  font-size: 24px;
 }
 /* authentication */
 .auth-container {
