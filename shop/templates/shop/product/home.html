@@ -122,32 +122,27 @@
 
 <!-- Categories Section -->
 <div class="categories-section">
-  <h5 class="mb-4">Browse Categories</h5>
-  <div class="categories-grid row row-cols-2 row-cols-md-3 row-cols-lg-4 g-4">
+  <p1>Browse Categories</p1>
+  <div class="categories-grid">
 
     <!-- Dynamic Categories -->
     {% for c in categories %}
-    <div class="col category-item">
-      <a href="{{ c.get_absolute_url }}" class="text-decoration-none" aria-label="View {{ c.name }} category">
-        <div class="category-card rounded shadow"
-             style="background-image: url('{% if c.image %}{{ c.image.url }}{% else %}https://images.unsplash.com/photo-1496843916299-590492c751f4?q=80&w=2071&auto=format&fit=crop{% endif %}'); 
-                    background-size: cover; 
-                    background-position: center; 
-                    height: 200px; 
-                    display: flex; 
-                    align-items: flex-end; 
-                    padding: 1rem;">
-          <div class="category-name bg-dark bg-opacity-50 w-100 text-white text-center py-2 rounded-bottom fw-bold">
-            {{ c.name }}
-          </div>
+    <div class="category-item">
+      {% if c.image %}
+      <div class="category-card" style="background-image: url('{{ c.image.url }}');">
+        {% else %}
+        <div class="category-card"
+          style="background-image: url('https://images.unsplash.com/photo-1496843916299-590492c751f4?q=80&w=2071&auto=format&fit=crop');">
+          {% endif %}
+          <a href="{{ c.get_absolute_url }}"></a>
         </div>
-      </a>
+        <a href="{{ c.get_absolute_url }}">
+          <div class="category-name">{{ c.name }}~></div>
+        </a>
+      </div>
+      {% endfor %}
     </div>
-    {% endfor %}
-
   </div>
-</div>
-
 
   <!-- Products Section -->
 
