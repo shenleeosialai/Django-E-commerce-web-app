@@ -106,4 +106,75 @@
     </div>
   </div>
 </footer>
+<section style="background-color: #1a1a1a;" class="container-fluid py-4 px-2 border-top" id="about-oshen">
+    <div class="row justify-content-center">
+      <div class="col-lg-12 px-3">
+        <h2 class="mb-4 text-center fw-bold">Oshen Comics Kenya – The Ultimate Online Comic Book & Merchandise Store in Kenya Nairobi
+          <span class="text-secondary">|</span> Shop Marvel, DC, Manga & More
+        </h2>
+        <p class="lead text-center mb-4">
+          Explore Oshen, Kenya's top online comic store for Marvel, DC, manga, collectibles, and geek merch.
+        </p>
+
+        <!-- Collapsible Content -->
+        <div id="oshenMoreContent" class="collapse">
+          <div class="mb-4">
+            <h4 class="fw-semibold">🎨 Comics, Collectibles & Geek Culture – All in One Place</h4>
+            <p>Discover our curated selection of:</p>
+            <ul>
+              <li>Marvel, DC, Image, and indie comics</li>
+              <li>Kenyan-made comics and original artwork</li>
+              <li>Manga, graphic novels, and fan-favorite series</li>
+              <li>Action figures, collectibles, and statues</li>
+              <li>Fan apparel like t-shirts and hoodies</li>
+              <li>Prints, posters, and pop culture décor</li>
+            </ul>
+          </div>
+
+          <div class="mb-4">
+            <h4 class="fw-semibold">💥 Best Deals & Limited Edition Drops</h4>
+            <p>
+              Get exclusive bundles, early access to rare items, and flash sales. Keep an eye out for new releases,
+              restocks, and exciting offers that make collecting more fun and affordable.
+            </p>
+          </div>
+
+          <div class="mb-4">
+            <h4 class="fw-semibold">🚚 Fast Delivery Across Kenya + Free Shipping</h4>
+            <p>
+              We offer fast, safe delivery to Nairobi, Mombasa, Kisumu, Nakuru, and everywhere in between.
+              Enjoy free shipping on select items and secure checkout with M-Pesa.
+            </p>
+          </div>
+
+          <div class="mb-4">
+            <h4 class="fw-semibold">🤝 Why Fans Love Oshen</h4>
+            <ul>
+              <li>100% authentic comics and merch</li>
+              <li>Support for local Kenyan comic creators</li>
+              <li>Safe payments via M-Pesa</li>
+              <li>Excellent customer service & return policy</li>
+            </ul>
+          </div>
+
+          <div class="text-center mt-5">
+            <h5 class="fw-bold mb-3">🦸‍♂️ Join the Oshen Community</h5>
+            <p class="mb-4">
+              Stay updated on new arrivals, creator spotlights, event announcements, and collector tips.
+              Be part of Kenya’s growing comic fanbase.
+            </p>
+            <a href="{% url 'shop:product_list' %}" class="btn btn-primary btn-lg px-4">Shop Now</a>
+          </div>
+        </div>
+
+        <!-- Toggle Button -->
+        <div class="text-center mt-4">
+          <button class="btn btn-outline-secondary" type="button" data-bs-toggle="collapse"
+            data-bs-target="#oshenMoreContent" aria-expanded="false" aria-controls="oshenMoreContent" id="toggleButton">
+            Show More
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
 {% endblock %}
