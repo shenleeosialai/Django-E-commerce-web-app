@@ -190,7 +190,7 @@ ul.errorlist {
   justify-content: flex-end;
   align-items: center;
   gap: 10px;
-  padding: 8px 30px;
+  padding: 8px 35px;
   background-color: #000000;
   position: relative;
   z-index: 10;
@@ -198,7 +198,7 @@ ul.errorlist {
 
 #subheader .cart,
 #subheader .account-menu {
-  font-size: medium;
+  font-size: larger;
   position: relative;
 }
 
@@ -238,6 +238,7 @@ ul.errorlist {
     background-color: transparent;
     border: 0;
     border-radius: var(--bs-dropdown-item-border-radius, 0);
+    font-size: larger;
 }
 
 
@@ -350,7 +351,7 @@ ul.errorlist {
   
   .product-card h3 {
     margin: 22px 0 17px;
-    font-size: 20px;
+    font-size: 28px;
     color: white;
   }
   
@@ -463,6 +464,7 @@ ul.errorlist {
     padding:10px 20px;
     color:#ffffff;
     border-bottom:4px solid #5993bb;
+    font-size: larger;
 }
 
 .order-info h3 {
@@ -638,6 +640,7 @@ form div.field {
     font-size: 32px;
 }
 .banner-section {
+  background-image: url('https://images.unsplash.com/flagged/photo-1587096472434-8b65b343980d?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1007,7 +1010,7 @@ iframe {
   text-align: center;
   color:#0fff;
   font-weight: small;
-  font-size: 17px;
+  font-size: 32px;
 }
 /* authentication */
 .auth-container {
