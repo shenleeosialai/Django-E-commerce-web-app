@@ -273,6 +273,19 @@ ul.errorlist {
     align-items: center;
     text-align: center;
   }
+
+  .category-card-link {
+  display: block;
+  height: 200px;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+}
+
+.category-card-link:hover {
+  transform: scale(1.02);
+}
   
   .category-card {
     width: 100%;
@@ -282,7 +295,7 @@ ul.errorlist {
     border-radius: 12px;
     transition: transform 0.3s ease;
   }
-  
+
   .category-card:hover {
     transform: scale(1.03);
   }
