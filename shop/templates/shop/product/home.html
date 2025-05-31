@@ -129,13 +129,16 @@
     {% for c in categories %}
       <div class="category-item">
 
-        <!-- Image as link -->
+        <!-- Image block as a link -->
         <a href="{{ c.get_absolute_url }}" aria-label="View {{ c.name }} category">
-          {% if c.image %}
-            <div class="category-card" style="background-image: url('{{ c.image.url }}');"></div>
-          {% else %}
-            <div class="category-card"></div>
-          {% endif %}
+          <div class="category-card" style="
+            background-image: url('{% if c.image %}{{ c.image.url }}{% else %}https://images.unsplash.com/photo-1496843916299-590492c751f4?q=80&w=2071&auto=format&fit=crop{% endif %}');
+            background-size: cover;
+            background-position: center;
+            height: 200px;
+            width: 100%;
+            border-radius: 10px;
+          "></div>
         </a>
 
         <!-- Name as separate link -->
