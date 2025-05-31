@@ -120,37 +120,23 @@
 </div>
 
 
-<!-- Categories Section -->
-<div class="categories-section">
-  <p1>Browse Categories</p1>
-  <div class="categories-grid">
+<!-- Dynamic Categories -->
+{% for c in categories %}
+<div class="category-item">
+  <a href="{{ c.get_absolute_url }}" aria-label="View {{ c.name }} category">
+    {% if c.image %}
+    <div class="category-card" style="background-image: url('{{ c.image.url }}');"></div>
+    {% else %}
+    <div class="category-card"
+      style="background-image: url('https://images.unsplash.com/photo-1496843916299-590492c751f4?q=80&w=2071&auto=format&fit=crop');"></div>
+    {% endif %}
+  </a>
 
-    <!-- Dynamic Categories -->
-    {% for c in categories %}
-      <div class="category-item">
-
-        <!-- Image block as a link -->
-        <a href="{{ c.get_absolute_url }}" aria-label="View {{ c.name }} category">
-          <div class="category-card" style="
-            background-image: url('{% if c.image %}{{ c.image.url }}{% else %}https://images.unsplash.com/photo-1496843916299-590492c751f4?q=80&w=2071&auto=format&fit=crop{% endif %}');
-            background-size: cover;
-            background-position: center;
-            height: 200px;
-            width: 100%;
-            border-radius: 10px;
-          "></div>
-        </a>
-
-        <!-- Name as separate link -->
-        <a href="{{ c.get_absolute_url }}" aria-label="View {{ c.name }} category">
-          <div class="category-name">{{ c.name }}~></div>
-        </a>
-
-      </div>
-    {% endfor %}
-
-  </div>
+  <a href="{{ c.get_absolute_url }}" aria-label="View {{ c.name }} category">
+    <div class="category-name">{{ c.name }}~></div>
+  </a>
 </div>
+{% endfor %}
 
 
   <!-- Products Section -->
