@@ -18,7 +18,7 @@ def home(request):
     featured_categories = Category.objects.filter(featured=True)
     for c in featured_categories:
         featured_products = Product.objects.filter(category=c,
-                                                   available=True)[:3]
+                                                   available=True)[:6]
         if featured_products:
             featured_sections.append({
                 'category': c,
