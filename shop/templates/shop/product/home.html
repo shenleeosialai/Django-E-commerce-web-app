@@ -129,26 +129,20 @@
     {% for c in categories %}
     <div class="category-item">
       {% if c.image %}
-      <a href="{{ c.get_absolute_url }}" aria-label="View {{ c.name }} category">
-        <div class="category-card" style="background-image: url('{{ c.image.url }}');"></div>
-      </a>
-      {% else %}
-      <a href="{{ c.get_absolute_url }}" aria-label="View {{ c.name }} category">
+      <div class="category-card" style="background-image: url('{{ c.image.url }}');">
+        {% else %}
         <div class="category-card"
           style="background-image: url('https://images.unsplash.com/photo-1496843916299-590492c751f4?q=80&w=2071&auto=format&fit=crop');">
+          {% endif %}
+          <a href="{{ c.get_absolute_url }}" aria-label="View {{ c.name }} category"></a>
         </div>
-      </a>
-      {% endif %}
-
-      <a href="{{ c.get_absolute_url }}" aria-label="View {{ c.name }} category">
-        <div class="category-name">{{ c.name }}~></div>
-      </a>
+        <a href="{{ c.get_absolute_url }}" aria-label="View {{ c.name }} category">
+          <div class="category-name">{{ c.name }}~></div>
+        </a>
+      </div>
+      {% endfor %}
     </div>
-    {% endfor %}
-
   </div>
-</div>
-
 
   <!-- Products Section -->
 
