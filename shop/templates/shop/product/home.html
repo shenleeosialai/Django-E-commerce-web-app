@@ -126,14 +126,20 @@
   <h2>Browse Categories</h2>
   <div class="categories-grid">
     {% for c in categories %}
-    <a href="{{ c.get_absolute_url }}" class="category-card"
-      style="background-image: url('{{ c.image.url if c.image else 'https://images.unsplash.com/photo-1496843916299-590492c751f4?q=80&w=2071&auto=format&fit=crop' }}');">
-      <div class="overlay"></div>
-      <div class="category-name">{{ c.name }} →</div>
-    </a>
+      {% if c.image %}
+        <a href="{{ c.get_absolute_url }}" class="category-card"
+           style="background-image: url('{{ c.image.url }}');">
+      {% else %}
+        <a href="{{ c.get_absolute_url }}" class="category-card"
+           style="background-image: url('https://images.unsplash.com/photo-1496843916299-590492c751f4?q=80&w=2071&auto=format&fit=crop');">
+      {% endif %}
+          <div class="overlay"></div>
+          <div class="category-name">{{ c.name }} →</div>
+        </a>
     {% endfor %}
   </div>
 </div>
+
 
 
 <!-- Products Section -->
