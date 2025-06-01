@@ -253,14 +253,14 @@ ul.errorlist {
 }
 
 .categories-section h2 {
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: bold;
   margin-bottom: 2rem;
 }
 
 .categories-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
   max-width: 1200px;
   margin: 0 auto;
@@ -276,7 +276,7 @@ ul.errorlist {
 .category-card {
   position: relative;
   width: 100%;
-  height: 250px;
+  height: 300px;
   background-size: cover;
   background-position: center;
   border-radius: 12px;
@@ -288,13 +288,19 @@ ul.errorlist {
   transform: scale(1.03);
 }
 
-/* Remove all text-inside-image issues by placing name outside */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
+}
+
 .category-name {
   margin-top: 0.75rem;
-  font-size: 1.2rem;
-  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333;
   text-decoration: none;
-  font-weight: 600;
   font-family: "Luckiest Guy", sans-serif;
 }
 
