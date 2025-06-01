@@ -280,12 +280,13 @@ ul.errorlist {
   transform: scale(1.03);
 }
 
+/* Overlay 
 .overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
   z-index: 1;
-}
+}effect */
 
 .category-name {
   position: relative;
