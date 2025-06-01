@@ -247,83 +247,46 @@ ul.errorlist {
     overflow:hidden;
 }
 
-.categories-section {
-    text-align: center;
-    padding: 2rem;
-  }
-  
-  .categories-section h2 {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 2rem;
-  }
-  
-  .categories-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1.5rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 1rem;
-  }
-  
-  .category-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
 
-  .category-card-link {
-  display: block;
-  height: 200px;
-  width: 100%;
+.category-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  height: 350px;
   background-size: cover;
   background-position: center;
-  border-radius: 10px;
+  border-radius: 12px;
+  text-decoration: none;
+  overflow: hidden;
+  transition: transform 0.3s ease;
 }
 
-.category-card-link:hover {
-  transform: scale(1.02);
+.category-card:hover {
+  transform: scale(1.03);
 }
-  
-  .category-card {
-    width: 100%;
-    padding-top: 100%;
-    background-size: cover;
-    background-position: center;
-    border-radius: 12px;
-    transition: transform 0.3s ease;
-  }
 
-  .category-card:hover {
-    transform: scale(1.03);
-  }
-  
-  .category-name {
-    margin-top: 0.75rem;
-    font-weight: 500;
-    font-size: 1rem;
-    color: #ffffff;
-    text-decoration: none;
-    font-family: "Luckiest Guy", sans-serif;
-  }
-  
-  .category-name-button {
-    background-color: #5e4caf; /* Green background */
-    color: white; /* White text */
-    padding: 10px 20px; /* Some padding */
-    border: none; /* Remove border */
-    border-radius: 5px; /* Rounded corners */
-    cursor: pointer; /* Pointer cursor on hover */
-    font-size: 16px; /* Font size */
-    text-align: center; /* Centered text */
-  }
-  
-  .category-name-button:hover {
-    background-color: #45a049; /* Darker green on hover */
-  }
-  
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+  z-index: 1;
+}
+
+.category-name {
+  position: relative;
+  z-index: 2;
+  padding: 1rem;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+ 
 
 /* Centering the heading */
 .products-section h2 {
@@ -878,7 +841,7 @@ iframe {
 }
 
 .nft-image-wrapper {
-  height: 500px;
+  height: 450px;
   overflow: hidden;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
