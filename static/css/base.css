@@ -288,12 +288,13 @@ ul.errorlist {
   transform: scale(1.03);
 }
 
+/* overlay
 .overlay {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.3);
   z-index: 1;
-}
+} */
 
 .category-name {
   margin-top: 0.75rem;
