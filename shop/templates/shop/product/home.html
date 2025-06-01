@@ -128,8 +128,7 @@
     {% for c in categories %}
       <div class="category-item">
         <a href="{{ c.get_absolute_url }}">
-          <div class="category-card"
-               style="background-image: url('{% if c.image %}{{ c.image.url }}{% else %}https://images.unsplash.com/photo-1496843916299-590492c751f4?q=80&w=2071&auto=format&fit=crop{% endif %}');">
+          <div class="category-card" style="background-image: url('{% if c.image %}{{ c.image.url }}{% else %}https://images.unsplash.com/photo-1496843916299-590492c751f4?q=80&w=2071&auto=format&fit=crop{% endif %}');">
             <div class="overlay"></div>
           </div>
         </a>
