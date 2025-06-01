@@ -253,40 +253,60 @@ ul.errorlist {
 }
 
 .categories-section h2 {
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: bold;
   margin-bottom: 2rem;
 }
 
 .categories-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
   max-width: 1200px;
   margin: 0 auto;
   padding: 1rem;
 }
 
-  .category-card {
-    width: 100%;
-    padding-top: 100%;
-    background-size: cover;
-    background-position: start;
-    border-radius: 12px;
-    transition: transform 0.3s ease;
-  }
+.category-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.category-card {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  background-size: cover;
+  background-position: start;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
 
 .category-card:hover {
   transform: scale(1.03);
 }
 
-/* Overlay 
 .overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+  background: rgba(0, 0, 0, 0.3);
   z-index: 1;
-}effect */
+}
+
+.category-name {
+  margin-top: 0.75rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;
+  font-family: "Luckiest Guy", sans-serif;
+}
+
+.category-name:hover {
+  text-decoration: underline;
+}
  
 
 /* Centering the heading */
